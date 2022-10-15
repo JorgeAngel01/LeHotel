@@ -8,8 +8,27 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Clientes(models.Model):
-    nombre = models.CharField(max_length=30)
-    direccion = models.CharField(max_length=50)
-    email = models.EmailField()
-    tfno = models.CharField(max_length=7)
+class Habitaciones(models.Model):
+
+    class estadoHabitacion(models.TextChoices):
+        DISPONIBLE = 'DI', 'disponible'
+        OCUPADA = 'OC', 'ocupada'
+        MANTENIMIENTO = 'MA', 'mantenimiento'
+        LIMPIEZA = 'LI', 'limpieza'
+        DESHABILITADA = 'DE', 'deshabilitada'
+
+    nombre =  models.CharField(
+        max_length=50,
+        blank=False,
+    )
+    estado = models.CharField(
+        max_length=2,
+        choices=estadoHabitacion.choices,
+        default=estadoHabitacion.DESHABILITADA,
+    )
+    costo = models.DecimalField(
+        max_digits=10, 
+        decimal_places=2,
+        default=0,
+    )
+    informacion = models.CharField(max_length=250)
