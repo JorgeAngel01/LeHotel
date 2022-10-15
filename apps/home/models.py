@@ -3,10 +3,11 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
+from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+# Tabla Habitaciones
 
 class Habitaciones(models.Model):
 
@@ -32,3 +33,26 @@ class Habitaciones(models.Model):
         default=0,
     )
     informacion = models.CharField(max_length=250)
+
+# Tabla Medios de Pago
+
+class MediosPago(models.Model):
+    descripcion=models.CharField(
+        max_length=100,
+        blank=False,
+    )
+
+    def __str__(self):
+        return self.descripcion
+
+# Tabla Datos de Pago
+
+class DatosPago(models.Model):
+    informacion = models.CharField(
+        max_length=250,
+        default='Sin datos de pago',
+    )
+    medios = models.ForeignKey(
+        MediosPago, blank=False,
+        on_delete=models.RESTRICT,
+    )
