@@ -8,11 +8,24 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
-
+from .models import Habitaciones
 
 @login_required(login_url="/login/")
 def index(request):
-    context = {'segment': 'index'}
+    
+    cuartos = Habitaciones.objects.all()
+
+    rooms = []
+    a = []
+    
+    for index, item in enumerate(cuartos):
+        if index % 3 == 0 and index != 0:
+            rooms.append(a)
+            a = []
+        a.append(item)
+    if a : rooms.append(a)
+
+    context = {'rooms': rooms}
 
     html_template = loader.get_template('home/index.html')
     return HttpResponse(html_template.render(context, request))
