@@ -3,6 +3,7 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
+from email.policy import default
 from statistics import mode
 from tkinter import CASCADE
 from tokenize import blank_re
@@ -46,6 +47,8 @@ class Habitaciones(models.Model):
         choices=estadoHabitacion.choices,
         default=estadoHabitacion.DESHABILITADA,
     )
+    cant_adultos = models.IntegerField(default=0)
+    cant_ninos = models.IntegerField(default=0)
     costo = formato_dinero()
     informacion = models.CharField(max_length=250)
 
@@ -78,7 +81,11 @@ class DatosPago(models.Model):
 # Tabla Reservaciones
 
 class Reservaciones(models.Model):
-    fecha_reservada = models.DateField()
+    fecha_reserva = models.DateField()
+    fecha_entrega = models.DateField(
+        blank=True,
+        null=True,
+    )
     costo_reservado = formato_dinero()
     correo = models.EmailField()
     habitaciones = formato_llave(Habitaciones)
