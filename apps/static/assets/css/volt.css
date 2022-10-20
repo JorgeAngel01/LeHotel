@@ -1292,8 +1292,8 @@ progress {
   display: flex;
   flex-wrap: wrap;
   margin-top: calc(var(--bs-gutter-y) * -1);
-  margin-right: calc(var(--bs-gutter-x) * -2);/*.5*/
-  margin-left: calc(var(--bs-gutter-x) * -2); }/*.5*/
+  margin-right: calc(var(--bs-gutter-x) * -.5);
+  margin-left: calc(var(--bs-gutter-x) * -.5); }
   .row > * {
     flex-shrink: 0;
     width: 100%;
@@ -5326,39 +5326,33 @@ textarea.form-control-lg {
   .navbar-dark .navbar-text a:focus {
     color: #ffffff; }
 
-.card{
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  min-width:0;
-  word-wrap:break-word;
-  background-color:#fff;
-  background-clip:border-box;
-  border:1px solid 
-  rgba(0,0,0,.125);
-  border-radius:.25rem}
-    .card>hr{
-      margin-right:0;
-      margin-left:0}
-    .card>.list-group{
-      border-top:inherit;
-      border-bottom:inherit}
-    .card>.list-group:first-child{
-      border-top-width:0;
-      border-top-left-radius:calc(.25rem - 1px);
-      border-top-right-radius:calc(.25rem - 1px)}
-    .card>.list-group:last-child{
-      border-bottom-width:0;
-      border-bottom-right-radius:calc(.25rem - 1px);
-      border-bottom-left-radius:calc(.25rem - 1px)}
-    .card>.card-header+.list-group,
-    .card>.list-group+.card-footer{
-      border-top:0}
-    .card > .card-header + .list-group,
-    .card > .list-group + 
-      -footer {
-        border-top: 0; }
-
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #ffffff;
+  background-clip: border-box;
+  border: 0.0625rem solid rgba(17, 24, 39, 0.125);
+  border-radius: 0.5rem; }
+  .card > hr {
+    margin-right: 0;
+    margin-left: 0; }
+  .card > .list-group {
+    border-top: inherit;
+    border-bottom: inherit; }
+    .card > .list-group:first-child {
+      border-top-width: 0;
+      border-top-left-radius: 0.4375rem;
+      border-top-right-radius: 0.4375rem; }
+    .card > .list-group:last-child {
+      border-bottom-width: 0;
+      border-bottom-right-radius: 0.4375rem;
+      border-bottom-left-radius: 0.4375rem; }
+  .card > .card-header + .list-group,
+  .card > .list-group + .card-footer {
+    border-top: 0; }
 
 .card-body {
   flex: 1 1 auto;
@@ -19071,7 +19065,3 @@ article .h1, article .h2, article .h3, article .h4, article .h5, article .h6 {
   z-index: 9999; }
 
 /*# sourceMappingURL=volt.css.map */
-
-.text-right{
-  text-align:right !important
-}

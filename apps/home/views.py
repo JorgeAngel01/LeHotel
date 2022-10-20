@@ -25,7 +25,10 @@ def index(request):
         a.append(item)
     if a : rooms.append(a)
 
-    context = {'rooms': rooms}
+    context = {
+        'rooms': rooms,
+        'cuartos' : cuartos
+        }
 
     html_template = loader.get_template('home/index.html')
     return HttpResponse(html_template.render(context, request))
