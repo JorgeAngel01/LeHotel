@@ -207,10 +207,11 @@
                                             <div class="row">
 
                                                 {% for room in slide %}
-                                                                                                
+                                                
                                                 <div class="col-md-4 mb-3">
                                                     <div class="card">
-                                                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532781914607-2031eca2f00d?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=7c625ea379640da3ef2e24f20df7ce8d">
+                                                        
+                                                        <img class="img-fluid" alt="100%x280" src={{rooms.foto_ref}}>
                                                         <div class="card-body">
                                                             <h4 class="card-title">{{room.nombre}}</h4>
                                                             <p class="card-text">{{room.informacion}}.</p>
@@ -268,44 +269,16 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <span class="fw-normal">Platinum Subscription Plan</span>
+                                        <span class="fw-normal">{{cuarto.nombre}}</span>
                                     </td>
-                                    <td><span class="fw-normal">1 May 2020</span></td>                        
-                                    <td><span class="fw-normal">1 Jun 2020</span></td>
-                                    <td><span class="fw-bold">$799,00</span></td>
-                                    <td><span class="fw-bold text-warning">Due</span></td>
+                                    <td><span class="fw-normal">{{cuarto.informacion}}</span></td>                        
+                                    <td><span class="fw-normal">{{cuarto.costo}}</span></td>
+                                    <td><span class="fw-bold">{{cuarto.cant_adultos}}</span></td>
+                                    <td><span class="fw-bold text-warning">{{cuarto.estado}}</span></td>
                                 </tr>
                             {% endfor %}
                                 
-                            <tr>
-                                <td>
-                                    <a href="#" class="fw-bold">
-                                        456478
-                                    </a>
-                                </td>
-                                <td>
-                                    <span class="fw-normal">Platinum Subscription Plan</span>
-                                </td>
-                                <td><span class="fw-normal">1 May 2020</span></td>                        
-                                <td><span class="fw-normal">1 Jun 2020</span></td>
-                                <td><span class="fw-bold">$799,00</span></td>
-                                <td><span class="fw-bold text-warning">Due</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <a href="#" class="fw-bold">
-                                        456478
-                                    </a>
-                                </td>
-                                <td>
-                                    <span class="fw-normal">Holy Subscription Plan</span>
-                                </td>
-                                <td><span class="fw-normal">1 May 2020</span></td>                        
-                                <td><span class="fw-normal">1 Jun 2020</span></td>
-                                <td><span class="fw-bold">$899,00</span></td>
-                                <td><span class="fw-bold text-warning">Due</span></td>
-                            </tr>
+                            
                                                   
                         </tbody>
                     </table>
