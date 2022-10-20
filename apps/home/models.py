@@ -51,6 +51,11 @@ class Habitaciones(models.Model):
     cant_ninos = models.IntegerField(default=0)
     costo = formato_dinero()
     informacion = models.CharField(max_length=250)
+    foto_ref = models.ImageField(
+        upload_to='archivos/fotos',
+        blank=True,
+        null=True,
+    )
 
     def __str__(self):
         return self.nombre
