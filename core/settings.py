@@ -11,6 +11,10 @@ env = environ.Env(
     DEBUG=(bool, True)
 )
 
+# Media paths to access files
+MEDIA_ROOT = ''
+MEDIA_URL = ''
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).parent.parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
