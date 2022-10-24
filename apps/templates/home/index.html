@@ -210,11 +210,11 @@
                                                 <div class="col-md-4 mb-3">
                                                     <div class="card">
                                                         
-                                                        <img class="img-fluid" alt="100%x280" src={{rooms.foto_ref}}>
+                                                        <img class="img-fluid" alt="100%x280" src="https://i.kym-cdn.com/photos/images/newsfeed/002/459/748/fd8.gif">
                                                         <div class="card-body">
                                                             <h4 class="card-title">{{room.nombre}}</h4>
                                                             <p class="card-text">{{room.informacion}}.</p>
-
+                                                            <button class="btn btn-primary" type="button">Reservar</button>
                                                         </div>
 
                                                     </div>
@@ -248,7 +248,7 @@
                     <table id="table_habitaciones" class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="border-gray-200">#</th>
+                                <th class="border-gray-200"></th>
                                 <th class="border-gray-200">Habitacion</th>						
                                 <th class="border-gray-200">Descripcion</th>
                                 <th class="border-gray-200">Costo</th>
@@ -263,9 +263,7 @@
                             {% for cuarto in cuartos  %}
                                 <tr>
                                     <td>
-                                        <a href="#" class="fw-bold">
-                                            456478
-                                        </a>
+                                        <a href="{% url 'reservacion' cuarto.id %}" class="text-info me-3">Reservar</a>
                                     </td>
                                     <td>
                                         <span class="fw-normal">{{cuarto.nombre}}</span>
