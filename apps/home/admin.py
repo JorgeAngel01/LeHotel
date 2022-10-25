@@ -12,6 +12,7 @@ from .models import Transacciones, RelTransaccionReservacion, RelTransaccionAgre
 @admin.register(Habitaciones)
 class HabitacionesAdmin(admin.ModelAdmin):
     list_display = ('id', 'nombre', 'estado', 'cant_adultos', 'cant_ninos', 'costo', 'informacion', 'foto_ref')
+    list_filter = ('estado',)
 
 @admin.register(MediosPago)
 class MediosPagoAdmin(admin.ModelAdmin):
@@ -23,15 +24,20 @@ class DatosPagoAdmin(admin.ModelAdmin):
 
 @admin.register(Reservaciones)
 class ReservacionesAdmin(admin.ModelAdmin):
-    list_display = ('id', 'fecha_reserva', 'fecha_entrega', 'costo_reservado','correo','datos_pago_id','habitaciones_id')
+    list_display = ('id', 'fecha_reserva', 'fecha_entrega', 'estado', 'costo_reservado','correo','datos_pago_id','habitaciones_id')
+    list_filter = ('estado','fecha_reserva',)
+    date_hierarchy = 'fecha_reserva'
 
 @admin.register(Agregados)
 class AgregadosAdmin(admin.ModelAdmin):
     list_display = ('id', 'categoria', 'agregado','costo')
+    list_filter = ('categoria',)
 
 @admin.register(Transacciones)
 class TransaccionesAdmin(admin.ModelAdmin):
     list_display = ('id', 'fecha_transaccion', 'total','detalles')
+    list_filter = ('fecha_transaccion',)
+    date_hierarchy = 'fecha_transaccion'
 
 @admin.register(RelTransaccionReservacion)
 class RelTraResAdmin(admin.ModelAdmin):

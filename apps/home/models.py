@@ -86,10 +86,21 @@ class DatosPago(models.Model):
 # Tabla Reservaciones
 
 class Reservaciones(models.Model):
+
+    class estadoReservacion(models.TextChoices):
+        ACEPTADA = 'AC', 'Aceptada'
+        RECHAZADA = 'RE', 'Rechazada'
+        PROCESANDO = 'PR', 'Procesando'
+
     fecha_reserva = models.DateField()
     fecha_entrega = models.DateField(
         blank=True,
         null=True,
+    )
+    estado = models.CharField(
+        max_length=2,
+        choices=estadoReservacion.choices,
+        default=estadoReservacion.PROCESANDO,
     )
     costo_reservado = formato_dinero()
     correo = models.EmailField()
