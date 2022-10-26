@@ -214,7 +214,8 @@
                                                         <div class="card-body">
                                                             <h4 class="card-title">{{room.nombre}}</h4>
                                                             <p class="card-text">{{room.informacion}}.</p>
-                                                            <button class="btn btn-primary" type="button">Reservar</button>
+                                                            <a href="{% url 'reservacion' room.id %}" class="btn btn-primary">Reservar</a>
+                                                            <button href="{% url 'reservacion' room.id %}" class="btn btn-primary" type="button">Reservar</button>
                                                         </div>
 
                                                     </div>
