@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
-from .models import Habitaciones, Reservaciones
+from .models import Habitaciones, Reservaciones, Agregados
 from .forms import Reservacion
 
 
@@ -40,22 +40,29 @@ def index(request):
 @login_required(login_url="/login/")
 def reservacion(request, room_id):
     
+    # Room display
     room = Habitaciones.objects.get(id=room_id)
-    reservas = Reservaciones.objects.filter(habitaciones=room_id).order_by('fecha_reserva')
 
-
-    queryset = Reservaciones.objects.filter(habitaciones=room_id).order_by('fecha_reserva')
+    #Room reservation
+    queryset = Reservaciones.objects.filter(habitaciones=room_id, estado="AC" ).order_by('fecha_reserva')
     data = serializers.serialize('json', list(queryset))
-    print("fuck")
-    print(data)
+
+    #Room additions
+    agrega = Agregados.objects.all()
 
     context = {
         'data' : data,
         'room' : room,
-        'reservacion': Reservacion()
+        'reservacion': Reservacion(),
+        'agrega': agrega
     }
-
     html_template = loader.get_template('home/reservaciones.html')
+    #Recibo datos 
+    if request.method == 'GET':
+        return HttpResponse(html_template.render(context, request))  
+    else:
+        print(request.POST)
+    
     return HttpResponse(html_template.render(context, request))    
 
 

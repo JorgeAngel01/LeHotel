@@ -215,7 +215,6 @@
                                                             <h4 class="card-title">{{room.nombre}}</h4>
                                                             <p class="card-text">{{room.informacion}}.</p>
                                                             <a href="{% url 'reservacion' room.id %}" class="btn btn-primary">Reservar</a>
-                                                            <button href="{% url 'reservacion' room.id %}" class="btn btn-primary" type="button">Reservar</button>
                                                         </div>
 
                                                     </div>
@@ -253,7 +252,7 @@
                                 <th class="border-gray-200">Habitacion</th>						
                                 <th class="border-gray-200">Descripcion</th>
                                 <th class="border-gray-200">Costo</th>
-                                <th class="border-gray-200">Huesped</th>
+                                <th class="border-gray-200">Huespedes</th>
                                 <th class="border-gray-200">Status</th>
                                 
                             </tr>
@@ -272,7 +271,7 @@
                                     <td><span class="fw-normal">{{cuarto.informacion}}</span></td>                        
                                     <td><span class="fw-normal">{{cuarto.costo}}</span></td>
                                     <td><span class="fw-bold">{{cuarto.cant_adultos}}</span></td>
-                                    <td><span class="fw-bold text-warning">{{cuarto.estado}}</span></td>
+                                    <td><span class="fw-bold text-warning">{{cuarto.get_estado_display}}</span></td>
                                 </tr>
                             {% endfor %}
                                 

@@ -44,8 +44,6 @@ for(fechas in data){
 
     cont++;
 }
-console.log(data)
-console.log(dateA)
 
 createYear = generate_year_range(currentYear, currentYear+1);
 /** or
