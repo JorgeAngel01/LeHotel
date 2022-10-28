@@ -4,7 +4,7 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from django.contrib import admin
-from .models import Agregados, Habitaciones, MediosPago, DatosPago, Reservaciones
+from .models import Agregados, Habitaciones, Reservaciones
 from .models import Transacciones, RelTransaccionReservacion, RelTransaccionAgregado
 
 # Register your models here.
@@ -14,28 +14,20 @@ class HabitacionesAdmin(admin.ModelAdmin):
     list_display = ('id', 'nombre', 'estado', 'cant_adultos', 'cant_ninos', 'costo', 'informacion', 'foto_ref')
     list_filter = ('estado',)
 
-@admin.register(MediosPago)
-class MediosPagoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'descripcion')
-
-@admin.register(DatosPago)
-class DatosPagoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'informacion', 'medios_id')
-
 @admin.register(Reservaciones)
 class ReservacionesAdmin(admin.ModelAdmin):
-    list_display = ('id', 'fecha_reserva', 'fecha_entrega', 'estado', 'costo_reservado','correo','datos_pago_id','habitaciones_id')
+    list_display = ('id', 'fecha_reserva', 'fecha_entrega', 'estado', 'costo_reservado','correo','habitaciones_id')
     list_filter = ('estado','fecha_reserva',)
     date_hierarchy = 'fecha_reserva'
 
 @admin.register(Agregados)
 class AgregadosAdmin(admin.ModelAdmin):
-    list_display = ('id', 'categoria', 'agregado','costo')
+    list_display = ('id', 'categoria', 'agregado','costo', 'descripcion')
     list_filter = ('categoria',)
 
 @admin.register(Transacciones)
 class TransaccionesAdmin(admin.ModelAdmin):
-    list_display = ('id', 'fecha_transaccion', 'total','detalles')
+    list_display = ('id', 'fecha_transaccion', 'total','medio_pago', 'detalles')
     list_filter = ('fecha_transaccion',)
     date_hierarchy = 'fecha_transaccion'
 
