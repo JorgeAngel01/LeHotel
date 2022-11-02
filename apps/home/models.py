@@ -130,7 +130,18 @@ class Agregados(models.Model):
 # Tabla Transacciones
 
 class Transacciones(models.Model):
+
+    class estadoTransaccion(models.TextChoices):
+        FINALIZADA = 'FI', 'Finalizada'
+        CANCELADA = 'CA', 'Cancelada'
+        VALIDANDO = 'VA', 'Validando'
+
     fecha_transaccion = models.DateField()
+    estado = models.CharField(
+        max_length=2,
+        choices=estadoTransaccion.choices,
+        default=estadoTransaccion.VALIDANDO,
+    )
     total = formato_dinero()
     detalles = models.CharField(max_length=200)
 

@@ -35,7 +35,7 @@ class AgregadosAdmin(admin.ModelAdmin):
 
 @admin.register(Transacciones)
 class TransaccionesAdmin(admin.ModelAdmin):
-    list_display = ('id', 'fecha_transaccion', 'total','detalles')
+    list_display = ('id', 'fecha_transaccion', 'estado', 'total','detalles')
     list_filter = ('fecha_transaccion',)
     date_hierarchy = 'fecha_transaccion'
 
