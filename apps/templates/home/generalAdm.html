@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- ===== Link Swiper's CSS ====== -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+    <!-- ===== Fontawesome CDN LINK ====== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- ===== css ====== -->
+    <link rel="stylesheet" href="getHab.scss">
+
+    <!-- Primary Meta Tags -->
+    <title>
+        LeHotel - Página principal
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="title" content="Volt - Free Bootstrap 5 Admin Dashboard">
+    <meta name="author" content="Themesberg">
+    <meta name="description"
+        content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
+    <meta name="keywords"
+        content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, themesberg, themesberg dashboard, themesberg admin dashboard" />
+    <link rel="canonical" href="https://themesberg.com/product/admin-dashboard/volt-premium-bootstrap-5-dashboard">
+
+    <!-- Sweet Alert -->
+    <link type="text/css" href="{{ ASSETS_ROOT }}/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <!-- Notyf -->
+    <link type="text/css" href="{{ ASSETS_ROOT }}/vendor/notyf/notyf.min.css" rel="stylesheet">
+
+    <!-- Volt CSS -->
+    <link type="text/css" href="{{ ASSETS_ROOT }}/css/volt.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link type="text/css" href="{{ ASSETS_ROOT }}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+    <script type='text/javascript'
+        src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
+
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <!-- Datatables -->
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs5/dt-1.12.1/date-1.1.2/r-2.3.0/sb-1.3.4/sp-2.0.2/datatables.min.css" />
+
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs5/dt-1.12.1/date-1.1.2/r-2.3.0/sb-1.3.4/sp-2.0.2/datatables.min.js"></script>
+
+    <script type="text/javascript" src="{{ ASSETS_ROOT }}/js/tableinit.js"></script>
+
+
+    <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+
+</head>
+
+<body>
+
+    <header class="header-global">
+        <nav id="navbar-main" aria-label="Primary navigation"
+            class="navbar navbar-main navbar-expand-lg navbar-theme-primary pt-6 navbar-dark">
+            <div class="container position-relative">
+                <div class="navbar-collapse collapse me-auto" id="navbar_global">
+                    <div class="navbar-collapse-header">
+                        <div class="row">
+                            <div class="col-6 collapse-close">
+                                <a href="#navbar_global" class="fas fa-times" data-toggle="collapse"
+                                    data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false"
+                                    title="close" aria-label="Toggle navigation"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+                        <li class="nav-item me-2">
+                            <a href="/dashboard.html" class="nav-link">Dashboard</a>
+                        </li>
+                        {% if user.is_superuser %}
+                        <li class="nav-item me-2">
+                            <a href="/admin/auth/user/" class="nav-link">Admin</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item me-2">
+                            <a href="/settings.html" class="nav-link">Settings</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+                        <li class="nav-item me-2">
+                            <a href="#" class="nav-link">General</a>
+                        </li>
+                        <div class="nav-item col-18 me-2">
+                            <input type="email" class="form-control" placeholder="Buscar" name="buscar"
+                                aria-label="Buscar" required>
+                        </div>
+                    </ul>
+                </div>
+                <div class="d-flex align-items-center ms-auto">
+                    <a href="page-sign-in.html" class="btn btn-outline-white d-inline-flex align-items-center me-md-3">
+                        Login
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Hero -->
+        <section class="section-header overflow-hidden pt-7 pt-lg-8 pb-9 pb-lg-12 bg-primary text-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="fw-bolder">Inicio</h1>
+                        <h2 class="lead fw-normal text-muted mb-5">
+                            LeHotel
+                        </h2>
+                        <!-- Button Modal -->
+                        <div class="d-flex align-items-center justify-content-center mb-5">
+                            <a href="/iniAdm.html" class="btn btn-secondary d-inline-flex align-items-center me-4">
+                                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8zM8 9a1 1 0 00-2 0v2a1 1 0 102 0V9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                Reservar
+                            </a>
+                        </div>
+                        <div class="d-flex justify-content-center flex-column mb-6 mb-lg-5">
+                            <!--<a href="https://themesberg.com" target="_blank">
+                                <img src="{{ ASSETS_ROOT }}/img/themesberg.svg" class="d-block mx-auto mb-3" height="25"
+                                    width="25" alt="Themesberg Logo">
+                                <span class="text-muted font-small">
+                                    &copy; Themesberg
+                                </span>
+                                <a target="_blank" href="https://appseed.us">Coded by AppSeed</a>
+                            </a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ARCO BAJO-->
+            <figure class="position-absolute bottom-0 left-0 w-100 d-none d-md-block mb-n2"><svg class="home-pattern"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 185.4">
+                    <path d="M3000,0v185.4H0V0c496.4,115.6,996.4,173.4,1500,173.4S2503.6,115.6,3000,0z"></path>
+                </svg></figure>
+        </section>
+        <!--<div class="section pt-0">
+            <div class="container mt-n10 mt-lg-n12 z-2">
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <img src="{{ ASSETS_ROOT }}/posi img/cam.jpg" alt="Mockup presentation">
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+        <!-- Carousel -->
+
+        <section class="section section-lg bg-soft pt-0">
+            <div class="container">
+
+                <!-- Carousel wrapper -->
+
+                <div class="row">
+                    <div class="col-6">
+                        <h3 class="mb-3">Habitaciones </h3>
+                    </div>
+                    <!--<div class="col-6 text-xl-end ">
+                        <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
+                        <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+                            <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </div>-->
+
+                    <div class="  col-12">
+
+                        <div id="carouselExampleIndicators2" class="swiper mySwiper carousel slide"
+                            data-ride="carousel">
+
+                            <div class="swiper-wrapper carousel-inner">
+
+                                {% for slide in rooms %}
+
+                                <div class="swiper-slide carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+                                    <div class="row">
+
+                                        {% for room in slide %}
+
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card">
+
+                                                <img class="img-fluid" alt="100%x280"
+                                                    src="{{ ASSETS_ROOT }}/posi img/cam.jpg">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">{{room.nombre}}</h4>
+                                                    <p class="card-text">{{room.informacion}}.</p>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="btn-group">
+                                                            <button type="button"
+                                                                class="btn btn-sm btn-outline-secondary">Ver</button>
+                                                            <!--<button type="button"class="btn btn-sm btn-outline-secondary">Editar</button>-->
+                                                            <button type="button"
+                                                                class="btn btn-sm btn-outline-secondary">Reservar</button>
+                                                        </div>
+                                                        <small class="text-muted">STATUS</small>
+                                                    </div>
+                                                    <!--<button class="btn btn-primary" type="button">Reservar</button>-->
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+
+                                {% endfor %}
+
+                            </div>
+                            <div class="swiper-button-next" href="#carouselExampleIndicators2" data-slide="next">
+                            </div>
+                            <div class="swiper-button-prev" data-slide="prev"></div>
+                            <div class="swiper-pagination" href="#carouselExampleIndicators2" data-slide="next">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- Room list -->
+
+        <section class="section section-lg bg-soft pt-0">
+            <div class="container">
+
+                <!-- Table -->
+                <div class="card card-body border-0 shadow table-wrapper table-responsive">
+
+
+                    <table id="table_habitaciones" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="border-gray-200"></th>
+                                <th class="border-gray-200">Habitacion</th>
+                                <th class="border-gray-200">Descripcion</th>
+                                <th class="border-gray-200">Costo</th>
+                                <th class="border-gray-200">Huespedes</th>
+                                <th class="border-gray-200">Status</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- Item -->
+                            {% for cuarto in cuartos %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'reservacion' cuarto.id %}" class="text-info me-3">Reservar</a>
+                                </td>
+                                <td>
+                                    <span class="fw-normal">{{cuarto.nombre}}</span>
+                                </td>
+                                <td><span class="fw-normal">{{cuarto.informacion}}</span></td>
+                                <td><span class="fw-normal">{{cuarto.costo}}</span></td>
+                                <td><span class="fw-bold">{{cuarto.cant_adultos}}</span></td>
+                                <td><span class="fw-bold text-warning">{{cuarto.get_estado_display}}</span></td>
+                            </tr>
+                            {% endfor %}
+
+
+
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+
+            </div>
+        </section>
+
+
+
+    </main>
+
+    <footer class="footer py-6 bg-gray-800 text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col mb-md-0">
+                    <span class="h5">LeHotel</span>
+                    <ul class="links-vertical mt-2">
+                        <li><a target="_blank" href="https://themesberg.com/products">Productos</a></li>
+                        <li><a target="_blank" href="https://themesberg.com/about">Sobre Nosotros</a></li>
+                        <li><a target="_blank" href="https://themesberg.com/contact">Contacto</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <hr class="bg-gray-700 my-5">
+        </div>
+        </div>
+    </footer>
+
+    {% include 'includes/scripts.html' %}
+    <!-- Initialize Swiper -->
+    <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+
+</body>
+
+</html>
