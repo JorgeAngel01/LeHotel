@@ -63,6 +63,26 @@
 <!-- Volt CSS -->
 <link type="text/css" href="{{ ASSETS_ROOT }}/css/volt.css" rel="stylesheet">
 
+<!-- Bootstrap -->
+<link type="text/css" href="{{ ASSETS_ROOT }}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+<script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
+
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
+
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+<!-- Datatables -->
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.12.1/date-1.1.2/r-2.3.0/sb-1.3.4/sp-2.0.2/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.12.1/date-1.1.2/r-2.3.0/sb-1.3.4/sp-2.0.2/datatables.min.js"></script>
+
+<script type="text/javascript" src="{{ ASSETS_ROOT }}/js/tableinit.js"></script>
+
+
 <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
 </head>
@@ -119,9 +139,9 @@
                         <div class="bootstrap-big-icon d-none d-lg-block">
                             <svg xmlns="http://www.w3.org/2000/svg" width="700" height="622" class="d-block my-1" viewBox="0 0 118 94" role="img"><title>Bootstrap</title><path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z" fill="currentColor"></path></svg>
                         </div>
-                        <h1 class="fw-bolder">Volt Bootstrap 5 Dashboard</h1>
+                        <h1 class="fw-bolder">Le Hotel</h1>
                         <h2 class="lead fw-normal text-muted mb-5">
-                            Open-source Seed Project
+                            Pagina Principal
                         </h2>
                         <!-- Button Modal -->
                         <div class="d-flex align-items-center justify-content-center mb-5">
@@ -153,6 +173,119 @@
                 </div>
             </div>
         </div>
+
+        <!-- Carousel -->
+
+        <section class="section section-lg bg-soft pt-0">
+            <div class="container">
+
+                <!-- Carousel wrapper -->
+                
+                <div class="row">
+                    <div class="col-6">
+                        <h3 class="mb-3">Carousel Habitaciones</h3>
+                    </div>
+                    <div class="col-6 text-xl-end ">
+                        <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
+                        <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+                            <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="col-12">
+
+                        <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+        
+                            <div class="carousel-inner" style="overflow:visible">
+
+                                {% for slide in rooms %}
+
+                                        <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+                                            <div class="row">
+
+                                                {% for room in slide %}
+                                                
+                                                <div class="col-md-4 mb-3">
+                                                    <div class="card">
+                                                        
+                                                        <img class="img-fluid" alt="100%x280" src="https://i.kym-cdn.com/photos/images/newsfeed/002/459/748/fd8.gif">
+                                                        <div class="card-body">
+                                                            <h4 class="card-title">{{room.nombre}}</h4>
+                                                            <p class="card-text">{{room.informacion}}.</p>
+                                                            <a href="{% url 'reservacion' room.id %}" class="btn btn-primary">Reservar</a>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            
+                                                {% endfor %}
+                                                
+                                            </div>
+                                        </div>
+                                    
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  
+               
+            </div>
+        </section>
+
+        <!-- Room list -->
+
+        <section class="section section-lg bg-soft pt-0">
+            <div class="container">
+
+                <!-- Table -->
+                <div class="card card-body border-0 shadow table-wrapper table-responsive">
+
+
+                    <table id="table_habitaciones" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="border-gray-200"></th>
+                                <th class="border-gray-200">Habitacion</th>						
+                                <th class="border-gray-200">Descripcion</th>
+                                <th class="border-gray-200">Costo</th>
+                                <th class="border-gray-200">Huespedes</th>
+                                <th class="border-gray-200">Status</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <!-- Item -->
+                            {% for cuarto in cuartos  %}
+                                <tr>
+                                    <td>
+                                        <a href="{% url 'reservacion' cuarto.id %}" class="text-info me-3">Reservar</a>
+                                    </td>
+                                    <td>
+                                        <span class="fw-normal">{{cuarto.nombre}}</span>
+                                    </td>
+                                    <td><span class="fw-normal">{{cuarto.informacion}}</span></td>                        
+                                    <td><span class="fw-normal">{{cuarto.costo}}</span></td>
+                                    <td><span class="fw-bold">{{cuarto.cant_adultos}}</span></td>
+                                    <td><span class="fw-bold text-warning">{{cuarto.get_estado_display}}</span></td>
+                                </tr>
+                            {% endfor %}
+                                
+                            
+                                                  
+                        </tbody>
+                    </table>
+
+
+                    
+                </div> 
+               
+            </div>
+        </section>
 
         <section class="section section-lg bg-soft pt-0">
             <div class="container">

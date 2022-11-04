@@ -10,6 +10,7 @@ urlpatterns = [
 
     # The home page
     path('', views.index, name='home'),
+    path('reservacion/<int:room_id>/', views.reservacion, name='reservacion'),
 
     # Matches any html file
     re_path(r'^.*\.*', views.pages, name='pages'),
