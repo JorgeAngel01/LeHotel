@@ -18,6 +18,6 @@ myForm.costo.value = `Tu total es: $${sum}`
 myForm.cost.value = sum
 }
 /*myForm.onsubmit = e =>
-{
+{                                                                                                                                                 ,                 
 e.preventDefault()  // disable submit
 }*/

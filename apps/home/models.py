@@ -60,29 +60,6 @@ class Habitaciones(models.Model):
     def __str__(self):
         return self.nombre
 
-# Tabla Medios de Pago
-
-class MediosPago(models.Model):
-    descripcion=models.CharField(
-        max_length=100,
-        blank=False,
-    )
-
-    def __str__(self):
-        return self.descripcion
-
-# Tabla Datos de Pago
-
-class DatosPago(models.Model):
-    informacion = models.CharField(
-        max_length=250,
-        default='Sin datos de pago',
-    )
-    medios = formato_llave(MediosPago)
-
-    def __str__(self):
-        return self.informacion
-
 # Tabla Reservaciones
 
 class Reservaciones(models.Model):
@@ -105,7 +82,6 @@ class Reservaciones(models.Model):
     costo_reservado = formato_dinero()
     correo = models.EmailField()
     habitaciones = formato_llave(Habitaciones)
-    datos_pago = formato_llave(DatosPago)
 
 # Tabla Agregados
 
@@ -123,6 +99,11 @@ class Agregados(models.Model):
     )
     agregado = models.CharField(max_length=50)
     costo = formato_dinero()
+    descripcion = models.CharField(
+        max_length=250,
+        blank = True,
+        null = True,
+    )
 
     def __str__(self):
         return self.agregado
@@ -130,8 +111,21 @@ class Agregados(models.Model):
 # Tabla Transacciones
 
 class Transacciones(models.Model):
+    class medioPago(models.TextChoices):
+        EFECTIVO = 'EF', 'Efectivo'
+        DEBITO = 'DE', 'Tarjeta de debito'
+        CREDITO = 'CR', 'Tarjeta de credito'
+        CHEQUE = 'CH', 'Cheque'
+        REFERENCIA = 'RE', 'Referencia bancaria'
+        TRANFERENCIA = 'TR', 'Transferencia bancaria'
+
     fecha_transaccion = models.DateField()
     total = formato_dinero()
+    medio_pago = models.CharField(
+        max_length=2,
+        choices=medioPago.choices,
+        default=medioPago.EFECTIVO,
+    )
     detalles = models.CharField(max_length=200)
 
 # Tabla Relacion Transaccion - Reservacion

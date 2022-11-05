@@ -2,9 +2,9 @@
 """
 Copyright (c) 2019 - present AppSeed.us
 """
-import json
+from datetime import datetime
+from venv import create
 from django.core import serializers
-from django.core.serializers.json import DjangoJSONEncoder
 from django import template
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
@@ -48,20 +48,40 @@ def reservacion(request, room_id):
     data = serializers.serialize('json', list(queryset))
 
     #Room additions
-    agrega = Agregados.objects.all()
+    agregados = Agregados.objects.all()
 
-    context = {
-        'data' : data,
-        'room' : room,
-        'reservacion': Reservacion(),
-        'agrega': agrega
-    }
     html_template = loader.get_template('home/reservaciones.html')
     #Recibo datos 
+    form = Reservacion(request.POST or None)
+    if form.is_valid():
+        form.save()
+        form = Reservacion()
+    """
     if request.method == 'GET':
         return HttpResponse(html_template.render(context, request))  
     else:
         print(request.POST)
+        print(request.POST['email'])
+        print(request.POST['nombres'])
+        print(request.POST['paterno'])
+        print(request.POST['materno'])
+        print(request.POST['fecha_ini'])
+        print(request.POST['fecha_fin'])
+        for a in agregados:
+            if a.agregado in request.POST: print(request.POST[a.agregado])
+
+
+        fecha_ini = datetime.strptime(request.POST['fecha_ini'],"%m/%d/%Y").strftime("%Y-%m-%d")
+        fecha_fin = datetime.strptime(request.POST['fecha_fin'],"%m/%d/%Y").strftime("%Y-%m-%d")
+
+        reserva = Reservaciones.objects.create(estado='PR', fecha_reserva = fecha_ini, fecha_entrega = fecha_fin, costo_reservado = request.POST['cost'], correo = request.POST['email'], habitaciones = room ) 
+    """
+    context = {
+        'data' : data,
+        'room' : room,
+        'reservacion': form,
+        'agrega': agregados
+    }  
     
     return HttpResponse(html_template.render(context, request))    
 
