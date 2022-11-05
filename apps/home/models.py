@@ -111,6 +111,12 @@ class Agregados(models.Model):
 # Tabla Transacciones
 
 class Transacciones(models.Model):
+
+    class estadoTransaccion(models.TextChoices):
+        FINALIZADA = 'FI', 'Finalizada'
+        CANCELADA = 'CA', 'Cancelada'
+        VALIDANDO = 'VA', 'Validando'
+
     class medioPago(models.TextChoices):
         EFECTIVO = 'EF', 'Efectivo'
         DEBITO = 'DE', 'Tarjeta de debito'
@@ -120,6 +126,11 @@ class Transacciones(models.Model):
         TRANFERENCIA = 'TR', 'Transferencia bancaria'
 
     fecha_transaccion = models.DateField()
+    estado = models.CharField(
+        max_length=2,
+        choices=estadoTransaccion.choices,
+        default=estadoTransaccion.VALIDANDO,
+    )
     total = formato_dinero()
     medio_pago = models.CharField(
         max_length=2,
