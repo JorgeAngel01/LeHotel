@@ -3,16 +3,6 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <!-- ===== Link Swiper's CSS ====== -->
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-
-    <!-- ===== Fontawesome CDN LINK ====== -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-
-    <!-- ===== css ====== -->
-    <link rel="stylesheet" href="getHab.scss">
-
     <!-- Primary Meta Tags -->
     <title>
         LeHotel - Página principal
@@ -59,6 +49,16 @@
         src="https://cdn.datatables.net/v/bs5/dt-1.12.1/date-1.1.2/r-2.3.0/sb-1.3.4/sp-2.0.2/datatables.min.js"></script>
 
     <script type="text/javascript" src="{{ ASSETS_ROOT }}/js/tableinit.js"></script>
+
+    <!-- ===== Link Swiper's CSS ====== -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+    <!-- ===== Fontawesome CDN LINK ====== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- ===== css ====== -->
+    <link rel="stylesheet" href="geHab.scss">
 
 
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
@@ -128,7 +128,7 @@
 
         <!-- Carousel -->
 
-        <section class="section section-lg bg-soft pt-3">
+        <section class="section section-lg bg-soft pt-4">
             <div class="container">
 
                 <!-- Carousel wrapper -->
@@ -178,29 +178,37 @@
                                                         </div>
                                                         <!--<small class="text-muted">STATUS</small>-->
                                                     </div>
-                                                    <!--<button class="btn btn-primary" type="button">Reservar</button>-->
+                                                    <!--ASI ESTA EN EL INDEX ORINGIN MASTER
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="btn-group">
+                                                            <a href="{% url 'reservacion' room.id %}" class="btn btn-sm btn-outline-secondary">Reservar</a>
+                                                            <!--<button type="button"class="btn btn-sm btn-outline-secondary">Editar</button>-->
                                                 </div>
-
+                                                <!--<small class="text-muted">STATUS</small>
+                                                    </div>-->
+                                                <!--<button class="btn btn-primary" type="button">Reservar</button>-->
                                             </div>
+
                                         </div>
-
-                                        {% endfor %}
-
                                     </div>
+
+                                    {% endfor %}
+
                                 </div>
-
-                                {% endfor %}
-
                             </div>
-                            <div class="swiper-button-next" href="#carouselExampleIndicators2" data-slide="next">
-                            </div>
-                            <div class="swiper-button-prev" data-slide="prev"></div>
-                            <div class="swiper-pagination" href="#carouselExampleIndicators2" data-slide="next">
 
-                            </div>
+                            {% endfor %}
+
+                        </div>
+                        <div class="swiper-button-next" href="#carouselExampleIndicators2" data-slide="next">
+                        </div>
+                        <div class="swiper-button-prev" href="#carouselExampleIndicators2" data-slide="prev"></div>
+                        <div class="swiper-pagination" href="#carouselExampleIndicators2" data-slide="prev">
+
                         </div>
                     </div>
                 </div>
+            </div>
 
 
             </div>
@@ -294,11 +302,6 @@
     </footer>
 
     {% include 'includes/scripts.html' %}
-    <!-- Initialize Swiper -->
-    <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
 
 </body>
