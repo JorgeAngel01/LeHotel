@@ -52,10 +52,12 @@ def reservacion(request, room_id):
 
     html_template = loader.get_template('home/reservaciones.html')
     #Recibo datos 
+    print(request.POST)
     form = Reservacion(request.POST or None)
     if form.is_valid():
-        form.save()
         form = Reservacion()
+        print(request.POST)
+  
     """
     if request.method == 'GET':
         return HttpResponse(html_template.render(context, request))  
