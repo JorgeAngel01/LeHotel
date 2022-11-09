@@ -14,7 +14,7 @@ from .models import Habitaciones, Reservaciones, Agregados
 from .forms import Reservacion
 
 
-@login_required(login_url="/login/")
+# @login_required(login_url="/login/")
 def index(request):
     
     cuartos = Habitaciones.objects.filter(estado='DI')
@@ -37,7 +37,7 @@ def index(request):
     html_template = loader.get_template('home/index.html')
     return HttpResponse(html_template.render(context, request))
 
-@login_required(login_url="/login/")
+# @login_required(login_url="/login/")
 def reservacion(request, room_id):
     
     # Room display
