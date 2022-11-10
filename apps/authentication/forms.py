@@ -6,6 +6,8 @@ Copyright (c) 2019 - present AppSeed.us
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 
 class LoginForm(forms.Form):
     username = forms.CharField(
@@ -22,6 +24,7 @@ class LoginForm(forms.Form):
                 "class": "form-control"
             }
         ))
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
 
 
 class SignUpForm(UserCreationForm):

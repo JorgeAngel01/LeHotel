@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'allauth.account',                              # OAuth new
     'allauth.socialaccount',                        # OAuth new 
     'allauth.socialaccount.providers.github',       # OAuth new 
-    "sslserver" 
+    "sslserver",
+    "captcha"
 ]
 
 MIDDLEWARE = [
@@ -180,3 +181,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'leibarrita@gmail.com'
 EMAIL_HOST_PASSWORD = 'lousrfekryvnqptz'
 DEFAULT_FROM_EMAIL = 'email default'
+
+RECAPTCHA_PUBLIC_KEY = '6LcQQOgiAAAAAIl7JCiQkfkgvsYIoqavgBVALKdN'
+RECAPTCHA_PRIVATE_KEY = '6LcQQOgiAAAAAMKtC3rcfO5nIEE9ihZLUrd1efXR'
