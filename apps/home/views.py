@@ -2,7 +2,6 @@
 """
 Copyright (c) 2019 - present AppSeed.us
 """
-from datetime import datetime
 from venv import create
 from django.core import serializers
 from django import template

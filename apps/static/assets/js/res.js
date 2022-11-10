@@ -20,7 +20,6 @@ myForm.costo.value = `Tu total es: $${sum}`
 myForm.cost.value = sum
 }
 
-
 function errorAlert(){
 
     Swal.fire({

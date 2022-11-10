@@ -166,7 +166,7 @@
                     <div class="card card-body border-0 shadow mb-4 justify-content-center">
                         <h2 class="h5 mb-4">Datos Personales</h2>
                         
-                        <form name="reserva" method="POST">
+                        <form onsubmit="return validRes()" name="reserva" method="POST">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -310,6 +310,7 @@
                             </div>
                             <div class="mt-3">
                                 {% if reservacion.errors %}
+                                {{reservacion.errors}}
                                 {{reservacion.non_field_errors}}
                                 {% endif %}
                                 <button class="btn btn-gray-800 mt-2 animate-up-2" type="submit">Save all</button>
