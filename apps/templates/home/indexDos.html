@@ -302,6 +302,21 @@
     </footer>
 
     {% include 'includes/scripts.html' %}
+    <script type="text/javascript" src="{{ ASSETS_ROOT }}/js/res.js"></script>
+    
+    {% if reservacion.errors %}
+
+    <script>
+        
+        Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        html: "Hubo un error con el formulario"
+        })
+
+    </script>
+
+    {% endif %}
 
 
 </body>
