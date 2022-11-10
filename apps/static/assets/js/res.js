@@ -1,3 +1,4 @@
+document.getElementById("form").style.display = 'none';
 const value = JSON.parse(document.getElementById('cost').textContent);
 valor = parseFloat(value)
 console.log(typeof valor)
@@ -28,6 +29,10 @@ function errorAlert(){
         text: 'Something went wrong!',
         footer: '<a href>Why do I have this issue?</a>'
     })
+}
+
+function showForm(){
+    document.getElementById("form").style.display = 'block';
 }
 
 /*myForm.onsubmit = e =>
