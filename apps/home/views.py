@@ -87,8 +87,7 @@ def reservacion(request, room_id):
         'agrega': agregados
     }  
     
-    return HttpResponse(html_template.render(context, request))    
-
+    return HttpResponse(html_template.render(context, request))
 
 @login_required(login_url="/login/")
 def pages(request):

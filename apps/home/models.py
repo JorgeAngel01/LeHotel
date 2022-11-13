@@ -52,7 +52,7 @@ class Habitaciones(models.Model):
     costo = formato_dinero()
     informacion = models.CharField(max_length=250)
     foto_ref = models.ImageField(
-        upload_to='static/archivos/fotos',
+        upload_to='static/home/',
         blank=True,
         null=True,
     )
