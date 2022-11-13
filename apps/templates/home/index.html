@@ -77,7 +77,6 @@
     <link rel="stylesheet" href="geHab.scss">
 
 
-
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
 </head>
@@ -102,6 +101,20 @@
                         <li class="nav-item me-2">
                             <a href="#" class="nav-link">Inicio</a>
                         </li>
+                    </ul>
+                    <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+                        <li class="nav-item me-2">
+                            <a href="/dashboard.html" class="nav-link">Dashboard</a>
+                        </li>
+                        {% if user.is_superuser %}
+                        <li class="nav-item me-2">
+                            <a href="/admin/auth/user/" class="nav-link">Administrador</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item me-2">
+                            <a href="/settings.html" class="nav-link">Configuración</a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
                 <div class="d-flex align-items-center ms-auto">
@@ -223,11 +236,9 @@
 
         <section class="section section-lg bg-soft pt-0">
             <div class="container">
-
+                <h3> Busqueda Avanzada </h3>
                 <!-- Table -->
                 <div class="card card-body border-0 shadow table-wrapper table-responsive">
-
-
                     <table id="table_habitaciones" class="table table-hover">
                         <thead>
                             <tr>
@@ -236,7 +247,6 @@
                                 <th class="border-gray-200">Descripcion</th>
                                 <th class="border-gray-200">Costo</th>
                                 <th class="border-gray-200">Huespedes</th>
-                                <th class="border-gray-200">Status</th>
 
                             </tr>
                         </thead>
@@ -254,7 +264,6 @@
                                 <td><span class="fw-normal">{{cuarto.informacion}}</span></td>
                                 <td><span class="fw-normal">{{cuarto.costo}}</span></td>
                                 <td><span class="fw-bold">{{cuarto.cant_adultos}}</span></td>
-                                <td><span class="fw-bold text-warning">{{cuarto.get_estado_display}}</span></td>
                             </tr>
                             {% endfor %}
 
