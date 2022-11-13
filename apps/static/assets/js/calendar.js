@@ -182,51 +182,6 @@ function daysInMonth(iMonth, iYear) {
     return 32 - new Date(iYear, iMonth, 32).getDate();
 }
 
-function validRes(){
-    
-    /*ini = document.getElementById("fecha_ini").value;
-    fin = document.getElementById("fecha_fin").value;
-    console.log(ini)
-    console.log(fin)*/
-
-    ini = document.getElementById("fecha_ini").value;
-    var datearray = ini.split("/");
-    var date = datearray[1] + '/' + datearray[0] + '/' + datearray[2] + ' 00:00:00';
-    var dateR = new Date( date );
-
-    fin = document.getElementById("fecha_fin").value;
-    datearray = fin.split("/");
-    date = datearray[1] + '/' + datearray[0] + '/' + datearray[2] + ' 00:00:00';
-    var dateE = new Date( date );
-
-    /*var dateR = new Date( ini + ' 00:00:00');
-    var dateE = new Date( fin + ' 00:00:00');*/
-    console.log(dateR)
-    console.log(dateE)
-
-    var dateArray = getDates( dateR, dateE);
-
-    for (let i = 0; i < dateA.length; i++) {
-        //console.log(dateA[i])
-        fechas = dateA[i];
-        console.log(fechas)
-        const output = fechas.filter(element => dateArray.indexOf(element) !== -1);
-
-        /*const output = fechas.filter(function (obj) {
-            return dateArray.indexOf(obj) !== -1;
-          });*/
-        
-          if(!output.length){
-            console.log(output)
-            console.log("repe")
-
-            return false;
-          }
-          
-
-    }
-    return false;
-}
 /*
 function showCalendar(month, year) {
 

@@ -52,9 +52,12 @@ def reservacion(request, room_id):
     html_template = loader.get_template('home/reservaciones.html')
     #Recibo datos 
     print(request.POST)
-    form = Reservacion(request.POST or None)
+
+    form = Reservacion(request.POST or None, room = room_id)
+    #form = Reservacion(room = room_id)
+
     if form.is_valid():
-        form = Reservacion()
+        #form = Reservacion()
         print(request.POST)
   
     """
@@ -111,3 +114,4 @@ def pages(request):
     except:
         html_template = loader.get_template('home/page-500.html')
         return HttpResponse(html_template.render(context, request))
+
