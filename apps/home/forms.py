@@ -4,12 +4,23 @@ Copyright (c) 2019 - present AppSeed.us
 """
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from datetime import datetime, timedelta
+from .models import Reservaciones
 
 class Reservacion(forms.Form):
+    query = None
+    
+    def __init__(self, *args, **kwargs):
+       
+        room = kwargs.pop('room')
+        super(Reservacion, self).__init__(*args, **kwargs)
+        self.query = Reservaciones.objects.filter(habitaciones = room , estado="AC" ).order_by('fecha_reserva') 
+
+
     email = forms.EmailField(
         widget=forms.EmailInput(
             attrs={
-                "placeholder": "Ingresa tus email",
+                "placeholder": "Ingresa tu email",
                 "class": "form-control"
             }
         )) 
@@ -29,6 +40,7 @@ class Reservacion(forms.Form):
                 "class": "form-control"
             }
         )) 
+
     materno = forms.CharField(
     widget=forms.TextInput(
         attrs={
@@ -37,24 +49,27 @@ class Reservacion(forms.Form):
         }
     )) 
 
-    fecha_ini = forms.DateField(
-    widget=forms.TextInput(
+    fecha_ini = forms.DateField( 
+    widget=forms.DateInput(
         attrs={
+            "id": "fecha_ini",
             "data-datepicker": "",
-            "placeholder": "mm/dd/yyyy",
+            "placeholder": "dd/mm/yyyy",
             "class": "form-control"
         }
     ))
 
-    fecha_fin = forms.DateField(
-    widget=forms.TextInput(
+    fecha_fin = forms.DateField(     
+    widget=forms.DateInput(
         attrs={
+            "id": "fecha_fin",
             "data-datepicker": "",
-            "placeholder": "mm/dd/yyyy",
+            "placeholder": "dd/mm/yyyy",
             "class": "form-control"
         }
     ))
     
+    # Hidden fields
     cost = forms.FloatField(
     widget=forms.TextInput(
         attrs={
@@ -62,14 +77,46 @@ class Reservacion(forms.Form):
             "hidden": True
         }
     ))
+    """
+    def clean_fecha_ini(self,*args,**kwargs):
+        start_date = self.cleaned_data['fecha_ini']
 
+
+        print(start_date)
+        
+        if start_date:
+            raise forms.ValidationError("End date must be later than start date")
+        return start_date
+    """
+    
     def clean(self):
+
+        cleaned_data = super(Reservacion, self).clean()
+        print(self.cleaned_data)
+
         start_date = self.cleaned_data['fecha_ini']
         end_date = self.cleaned_data['fecha_fin']
+
+        dates = [start_date + timedelta(days=x) for x in range(((end_date + timedelta(1))-start_date).days)]
+        print(dates)
+
+        for obj in self.query:
+
+            fechas = [obj.fecha_reserva + timedelta(days=x) for x in range(((obj.fecha_entrega + timedelta(1)) -obj.fecha_reserva).days)]
+            print(fechas)
+
+            if set(fechas) & set(dates):
+                raise forms.ValidationError("La reservacion no puede ser en fechas ocupadas.")
+
+        currentDate = datetime.now().date()
 
         print(start_date)
         print(end_date)
         
-        if end_date <= start_date:
-            raise forms.ValidationError("End date must be later than start date")
+        if end_date < start_date:
+            raise forms.ValidationError("La fecha final debe ser despues de la fecha inicial.")
+        if start_date < currentDate:
+            raise forms.ValidationError("La reservacion no puede ser en fechas pasadas.")
+
         return super(Reservacion, self).clean()
+    
