@@ -100,6 +100,17 @@ def reservacion(request, room_id):
         return HttpResponse(html_template.render(context, request))
 
 @login_required(login_url="/login/")
+def camarista(request):
+    
+    context = {
+        
+    }
+
+    html_template = loader.get_template('home/index.html')
+    return HttpResponse(html_template.render(context, request))
+
+
+@login_required(login_url="/login/")
 def pages(request):
     context = {}
     # All resource paths end in .html.
