@@ -112,15 +112,15 @@
                         </li>
                         {% elif user.groups.all.0.name == "administradores hotel" %}
                         <li class="nav-item me-2">
-                            <a href="/admin/auth/user/" class="nav-link">Gerente</a>
+                            <a href="{% url 'gerente' %}" class="nav-link">Gerente</a>
                         </li>
                         {% elif user.groups.all.0.name == "camaristas" %}
                         <li class="nav-item me-2">
-                            <a href="/admin/auth/user/" class="nav-link">Camarista</a>
+                            <a href="{% url 'camarista' %}" class="nav-link">Camarista</a>
                         </li>
                         {% elif user.groups.all.0.name == "mantenimiento" %}
                         <li class="nav-item me-2">
-                            <a href="/admin/auth/user/" class="nav-link">Mantenimiento</a>
+                            <a href="{% url 'mantenimiento' %}" class="nav-link">Mantenimiento</a>
                         </li>
                         {% else %}
                         <li class="nav-item me-2">

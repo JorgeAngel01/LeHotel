@@ -106,8 +106,28 @@ def camarista(request):
         
     }
 
-    html_template = loader.get_template('home/index.html')
+    html_template = loader.get_template('home/genCam.html')
     return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def mantenimiento(request):
+    
+    context = {
+        
+    }
+
+    html_template = loader.get_template('home/genMant.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def gerente(request):
+    
+    context = {
+        
+    }
+
+    html_template = loader.get_template('home/generalAdm.html')
+    return HttpResponse(html_template.render(context, request))        
 
 
 @login_required(login_url="/login/")
