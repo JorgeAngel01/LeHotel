@@ -85,9 +85,27 @@
                         <li class="nav-item me-2">
                             <a href="#" class="nav-link">Inicio</a>
                         </li>
+                        {% if user.is_superuser %}
                         <li class="nav-item me-2">
-                            <a href="#" class="nav-link">Habitaciones</a>
+                            <a href="/admin/auth/user/" class="nav-link">Administrador</a>
                         </li>
+                        {% elif user.groups.all.0.name == "administradores hotel" %}
+                        <li class="nav-item me-2">
+                            <a href="{% url 'gerente' %}" class="nav-link">Gerente</a>
+                        </li>
+                        {% elif user.groups.all.0.name == "camaristas" %}
+                        <li class="nav-item me-2">
+                            <a href="{% url 'camarista' %}" class="nav-link">Camarista</a>
+                        </li>
+                        {% elif user.groups.all.0.name == "mantenimiento" %}
+                        <li class="nav-item me-2">
+                            <a href="{% url 'mantenimiento' %}" class="nav-link">Mantenimiento</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item me-2">
+                            <a href="/settings.html" class="nav-link">Configuración</a>
+                        </li>
+                        {% endif %}
                     </ul>
                     <!--<ul class="navbar-nav navbar-nav-hover align-items-lg-center">
                         <li class="nav-item me-2">
