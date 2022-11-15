@@ -102,6 +102,7 @@ class Reservacion(forms.Form):
 
         dates = [start_date + timedelta(days=x) for x in range(((end_date + timedelta(1))-start_date).days)]
         print(dates)
+        print(self.query)
 
         for obj in self.query:
 

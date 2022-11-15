@@ -69,7 +69,7 @@
                         </ul>-->
                     <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
                         <li class="nav-item me-2">
-                            <a href="{% url 'home' %}" class="nav-link">Inicio</a>
+                            <a href="/" class="nav-link">Inicio</a>
                         </li>
                         <!--<div class="nav-item col-18 me-2">
                             <input type="email" class="form-control" placeholder="Buscar" name="buscar"
@@ -77,11 +77,26 @@
                         </div>-->
                     </ul>
                 </div>
-                <div class="d-flex align-items-center ms-auto">
+                {% if user.is_authenticated %}
+                    <div class="media-body ms-2 text-white align-items-center d-none d-lg-block px-5">
+                        <span class="mb-0 font-small fw-bold text-white">
+                            Current User: <strong>{{ request.user.username }}</strong>
+                        </span>
+                    </div>
+                    <br>
+                    <a href="{% url 'logout' %}" class="btn btn-outline-white d-inline-flex align-items-center me-md-3">
+                        Cerrar Sesion
+                    </a>
+                    {% else %}
+                    <!--<div class="nav-item col-18 me-2">
+                        <input type="email" class="form-control" placeholder="Buscar" name="buscar" aria-label="Buscar"
+                            required>
+                    </div>-->
                     <a href="{% url 'login' %}" class="btn btn-outline-white d-inline-flex align-items-center me-md-3">
                         Ingresar
                     </a>
-                </div>
+                {% endif %}
+                
             </div>
         </nav>
     </header>
