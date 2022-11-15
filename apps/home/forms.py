@@ -6,6 +6,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from datetime import datetime, timedelta
 from .models import Reservaciones
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 
 class Reservacion(forms.Form):
     query = None
@@ -88,7 +90,8 @@ class Reservacion(forms.Form):
             raise forms.ValidationError("End date must be later than start date")
         return start_date
     """
-    
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
+
     def clean(self):
 
         cleaned_data = super(Reservacion, self).clean()
