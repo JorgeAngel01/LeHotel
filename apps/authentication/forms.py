@@ -56,6 +56,7 @@ class SignUpForm(UserCreationForm):
                 "class": "form-control"
             }
         ))
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
 
     class Meta:
         model = User

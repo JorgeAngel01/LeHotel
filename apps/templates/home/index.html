@@ -1,19 +1,3 @@
-<!--
-
-=========================================================
-* Volt Free - Bootstrap 5 Dashboard
-=========================================================
-
-* Product Page: https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard
-* Copyright 2021 Themesberg (https://www.themesberg.com)
-
-* Designed and coded by https://themesberg.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal. Contact us if you want to remove it.
-
--->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,8 +85,11 @@
                         <li class="nav-item me-2">
                             <a href="#" class="nav-link">Inicio</a>
                         </li>
+                        <li class="nav-item me-2">
+                            <a href="#" class="nav-link">Habitaciones</a>
+                        </li>
                     </ul>
-                    <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+                    <!--<ul class="navbar-nav navbar-nav-hover align-items-lg-center">
                         <li class="nav-item me-2">
                             <a href="/dashboard.html" class="nav-link">Dashboard</a>
                         </li>
@@ -127,9 +114,10 @@
                             <a href="/settings.html" class="nav-link">Configuración</a>
                         </li>
                         {% endif %}
-                    </ul>
+                    </ul>-->
                 </div>
                 <div class="d-flex align-items-center ms-auto">
+
                     {% if user.is_authenticated %}
                     <div class="media-body ms-2 text-white align-items-center d-none d-lg-block px-5">
                         <span class="mb-0 font-small fw-bold text-white">
@@ -156,32 +144,10 @@
 
     <main>
 
-        <!-- Hero  <!-- ESTE SE PUEDE USAR YA EN TODAS LAS PAGINAS-->
-        <section class="section-header overflow-hidden pt-0 pt-lg-6 pb-9 pb-lg-0 bg-primary text-white">
-            <div class="container">
-                <div class="d-flex justify-content-center flex-column mb-0 mb-lg-0">
-                    <!--<a href="https://themesberg.com" target="_blank">
-                                        <img src="{{ ASSETS_ROOT }}/img/themesberg.svg" class="d-block mx-auto mb-3" height="25"
-                                            width="25" alt="Themesberg Logo">
-                                        <span class="text-muted font-small">
-                                            &copy; Themesberg
-                                        </span>
-                                        <a target="_blank" href="https://appseed.us">Coded by AppSeed</a>
-                                    </a>-->
-                </div>
-            </div>
-            </div>
-            </div>
-            <!-- ARCO BAJO
-                    <figure class="position-absolute bottom-0 left-0 w-100 d-none d-md-block mb-n2"><svg class="home-pattern"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 185.4">
-                            <path d="M3000,0v185.4H0V0c496.4,115.6,996.4,173.4,1500,173.4S2503.6,115.6,3000,0z"></path>
-                        </svg></figure>-->
-        </section>
 
         <!-- Carousel -->
 
-        <section class="section section-lg bg-soft pt-4">
+        <section class="section section-lg bg-soft pt-7">
             <div class="container">
 
                 <!-- Carousel wrapper -->
@@ -190,16 +156,6 @@
                     <div class="col-6">
                         <h3 class="mb-3">Habitaciones</h3>
                     </div>
-                    <!--<div class="col-6 text-xl-end ">
-                        <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button"
-                            data-slide="prev">
-                            <i class="fa fa-arrow-left"></i>
-                        </a>
-                        <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button"
-                            data-slide="next">
-                            <i class="fa fa-arrow-right"></i>
-                        </a>
-                    </div>-->
 
                     <div class="col-12">
 
@@ -227,7 +183,6 @@
                                                         <div class="btn-group">
                                                             <a href="{% url 'reservacion' room.id %}"
                                                                 class="btn btn-sm btn-outline-secondary">Reservar</a>
-                                                            <!--<button type="button"class="btn btn-sm btn-outline-secondary">Editar</button>-->
                                                         </div>
                                                         <!--<small class="text-muted">STATUS</small>-->
                                                     </div>
@@ -313,8 +268,6 @@
                 <div class="col mb-md-0">
                     <span class="h5">LeHotel</span>
                     <ul class="links-vertical mt-2">
-                        <!--<li><a target="_blank" href="https://themesberg.com/blog">Blog</a></li>
-                            <li><a target="_blank" href="https://themesberg.com/products">Productos</a></li>-->
                         <li><a target="_blank" href="https://themesberg.com/about">Sobre Nosotros</a></li>
                         <li><a target="_blank" href="https://themesberg.com/contact">Contacto</a></li>
                     </ul>
@@ -323,19 +276,7 @@
             </div>
             <hr class="bg-gray-700 my-5">
             <div class="row">
-                <!--<div class="col mb-md-0">
-                            col-6 col-md-2 mb-5 mb-lg-0
-                            <a href="https://themesberg.com" target="_blank" class="d-flex justify-content-center">
-                                <img src="{{ ASSETS_ROOT }}/img/themesberg-logo-alt.svg" height="35" class="mb-4"
-                                    alt="Themesberg Logo">
-                            </a>
-                            <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
-                                <p class="fw-normal font-small mb-0">
-                                    &copy; LeHotel 2022-<span class="current-year">2020</span> - coded by <a target="_blank"
-                                        href="https://appseed.us">AppSeed</a>.</p>
-                            </div>-->
             </div>
-        </div>
         </div>
     </footer>
 
