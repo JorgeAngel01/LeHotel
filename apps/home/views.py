@@ -6,6 +6,7 @@ from django.core import serializers
 from django import template
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect
 from django.template import loader
 from django.urls import reverse
 from .models import Habitaciones, Reservaciones, Agregados, Transacciones, RelTransaccionAgregado , RelTransaccionReservacion
@@ -69,14 +70,8 @@ def reservacion(request, room_id):
         return HttpResponse(html_template.render(context, request))  
     if request.method == 'POST':
         if form.is_valid():
-            #form = Reservacion()
-            print(request.POST)
-            print(request.POST['email'])
-            print(request.POST['nombres'])
-            print(request.POST['paterno'])
-            print(request.POST['materno'])
-            print(request.POST['fecha_ini'])
-            print(request.POST['fecha_fin'])
+            
+            form = Reservacion(None, room = room_id)
 
             # Reservacion object saved
             fecha_ini = datetime.strptime(request.POST['fecha_ini'],"%d/%m/%Y").strftime("%Y-%m-%d")
@@ -97,6 +92,7 @@ def reservacion(request, room_id):
                 if a.agregado in request.POST:
                     costo += float(a.costo)
                     RelTransaccionAgregado.objects.create(transaccion = trans, agregado = a)
+
             Transacciones.objects.filter(pk = trans.pk).update(total = costo)
 
             # Envio de email a administrador
@@ -115,6 +111,37 @@ def reservacion(request, room_id):
             
 
         return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def camarista(request):
+    
+    context = {
+        
+    }
+
+    html_template = loader.get_template('home/genCam.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def mantenimiento(request):
+    
+    context = {
+        
+    }
+
+    html_template = loader.get_template('home/genMant.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def gerente(request):
+    
+    context = {
+        
+    }
+
+    html_template = loader.get_template('home/generalAdm.html')
+    return HttpResponse(html_template.render(context, request))        
+
 
 @login_required(login_url="/login/")
 def pages(request):
