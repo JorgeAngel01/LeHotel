@@ -97,14 +97,14 @@ def reservacion(request, room_id):
 
             # Envio de email a administrador
             subject_admin = "Reservacion Realizada"
-            message_admin = "Una reservacion a sido realizada recientemente"
+            message_admin = "Una reservacion de la habitacion" + room.nombre + " a sido realizada recientemente"
             email_from_admin = settings.EMAIL_HOST_USER
-            recipient_list_admin = ["leibarrita@gmail.com"]
+            recipient_list_admin = ["pedro.barrita1029@gmail.com"]
             send_mail(subject_admin, message_admin, email_from_admin, recipient_list_admin)
 
             # Envio de email a usuario
-            subject = "Reservacion Realizada"
-            message = "Su reservacion a sido registrada y sera validada segun disponibilidad"
+            subject = "LeHotel - Reservacion Realizada"
+            message = "Su reservacion de la habitacion " + room.nombre + " a sido registrada y sera validada segun disponibilidad"
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [request.POST['email']]
             send_mail(subject, message, email_from, recipient_list)
