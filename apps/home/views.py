@@ -12,6 +12,8 @@ from django.urls import reverse
 from .models import Habitaciones, Reservaciones, Agregados, Transacciones, RelTransaccionAgregado , RelTransaccionReservacion
 from .forms import Reservacion
 from datetime import datetime
+from django.conf import settings
+from django.core.mail import send_mail
 
 
 # @login_required(login_url="/login/")
@@ -90,9 +92,23 @@ def reservacion(request, room_id):
                 if a.agregado in request.POST:
                     costo += float(a.costo)
                     RelTransaccionAgregado.objects.create(transaccion = trans, agregado = a)
-            Transacciones.objects.filter(pk = trans.pk).update(total = costo)  
 
-            return redirect('.')
+            Transacciones.objects.filter(pk = trans.pk).update(total = costo)
+
+            # Envio de email a administrador
+            subject_admin = "Reservacion Realizada"
+            message_admin = "Una reservacion a sido realizada recientemente"
+            email_from_admin = settings.EMAIL_HOST_USER
+            recipient_list_admin = ["leibarrita@gmail.com"]
+            send_mail(subject_admin, message_admin, email_from_admin, recipient_list_admin)
+
+            # Envio de email a usuario
+            subject = "Reservacion Realizada"
+            message = "Su reservacion a sido registrada y sera validada segun disponibilidad"
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [request.POST['email']]
+            send_mail(subject, message, email_from, recipient_list)
+            
 
         return HttpResponse(html_template.render(context, request))
 
