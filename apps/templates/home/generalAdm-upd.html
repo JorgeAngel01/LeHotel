@@ -20,10 +20,10 @@
                     <h2 class="fs-5 fw-bold mb-0">Edit</h2>
                     
                 </div>
-                <div class="card-body">
+                <div class="card-body col-xxl-8">
                     <form method="POST">
                         {% csrf_token %}
-                        {{form}}
+                        {{form.as_p}}
                     </form>
 
                 </div>

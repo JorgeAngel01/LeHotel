@@ -22,7 +22,8 @@ urlpatterns = [
     path('gerente/transacciones/', views.gerente, name='ger-trans'),
     path('gerente/habitaciones/', views.gerente, name='ger-hab'),
     path('gerente/ingresos/', views.gerente, name='ger-ing'),
-    path('gerente/update/<int:id>', views.update, name='ger-update'),
+
+    path('gerente/update/<int:option>/<int:id>', views.update, name='ger-update'),
 
 
 

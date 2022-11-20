@@ -10,7 +10,7 @@ from django.shortcuts import redirect
 from django.template import loader
 from django.urls import reverse
 from .models import Habitaciones, Reservaciones, Agregados, Transacciones, RelTransaccionAgregado , RelTransaccionReservacion
-from .forms import Reservacion
+from .forms import Reservacion, ReservacionM, Transaccion
 from datetime import datetime
 from django.conf import settings
 from django.core.mail import send_mail
@@ -135,16 +135,25 @@ def mantenimiento(request):
     return HttpResponse(html_template.render(context, request))
 
 @login_required(login_url="/login/")
-def update(request, id):
+def update(request, option, id):
     
-    a = Reservaciones.objects.get(pk=id)
-    form = Reservacion(instance = a,room = id)
+    form = None
+
+    if option == 2:
+        a = Reservaciones.objects.get(pk=id)
+        form = ReservacionM( instance = a)
+        if form.is_valid():
+            form.save()
+            return redirect('ger-res')
+
+    if option == 3:
+        a = Transacciones.objects.get(pk=id)
+        form = Transaccion(instance = a)
 
     context = {   
         'form' : form
     }
 
-    
 
     html_template = loader.get_template('home/generalAdm-upd.html')
     return HttpResponse(html_template.render(context, request))   
