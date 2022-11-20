@@ -7,19 +7,21 @@ const myForm = document.forms['reserva'];
 myForm.reset();
 
 myForm.costo.value = `Tu total es: $${valor}`
-myForm.oninput = _ => {
-    let sum = valor;
+myForm.oninput =_=>
+{
+let sum = valor;
 
-    myForm.querySelectorAll('input[type=checkbox]').forEach(chkBx => {
-        if (chkBx.checked) sum += +parseFloat(chkBx.value)
+myForm.querySelectorAll('input[type=checkbox]').forEach( chkBx => 
+    {
+    if (chkBx.checked) sum += +parseFloat(chkBx.value)
 
-    })
-    console.log(sum)
-    myForm.costo.value = `Tu total es: $${sum}`
-    myForm.cost.value = sum
+    })  
+console.log(sum)
+myForm.costo.value = `Tu total es: $${sum}`
+myForm.cost.value = sum
 }
 
-function errorAlert() {
+function errorAlert(){
 
     Swal.fire({
         icon: 'error',
@@ -29,7 +31,7 @@ function errorAlert() {
     })
 }
 
-function showForm() {
+function showForm(){
     document.getElementById("form").style.display = 'block';
 }
 
