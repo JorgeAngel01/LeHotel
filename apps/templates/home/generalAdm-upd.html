@@ -1,0 +1,50 @@
+{% extends "layouts/base-hotel.html" %}
+
+{% block title %} Gerente {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs5/dt-1.12.1/date-1.1.2/r-2.3.0/sb-1.3.4/sp-2.0.2/datatables.min.css" />
+{% endblock stylesheets %}
+
+{% block content %}
+
+    
+    <div class="py-4 row">
+
+        <div class="col-12 col-xxl mb-4">
+            
+            <div class="card border-0 shadow">
+                <div class="card-header border-bottom d-flex align-items-center justify-content-between">
+                    <h2 class="fs-5 fw-bold mb-0">Edit</h2>
+                    
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{form}}
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %} 
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs5/dt-1.12.1/date-1.1.2/r-2.3.0/sb-1.3.4/sp-2.0.2/datatables.min.js"></script>
+
+<script type="text/javascript" src="{{ ASSETS_ROOT }}/js/tableinit.js"></script>
+
+{% endblock javascripts %}

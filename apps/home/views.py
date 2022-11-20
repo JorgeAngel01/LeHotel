@@ -118,6 +118,8 @@ def camarista(request):
     context = {
         
     }
+    
+
 
     html_template = loader.get_template('home/genCam.html')
     return HttpResponse(html_template.render(context, request))
@@ -133,15 +135,50 @@ def mantenimiento(request):
     return HttpResponse(html_template.render(context, request))
 
 @login_required(login_url="/login/")
+def update(request, id):
+    
+    a = Reservaciones.objects.get(pk=id)
+    form = Reservacion(instance = a,room = id)
+
+    context = {   
+        'form' : form
+    }
+
+    
+
+    html_template = loader.get_template('home/generalAdm-upd.html')
+    return HttpResponse(html_template.render(context, request))   
+
+@login_required(login_url="/login/")
 def gerente(request):
     
-    context = {
-        
+    context = {   
     }
+
+    load_template = request.path.split('/')[-2]
+    
+    if load_template == 'reservaciones':
+        reservaciones = Reservaciones.objects.all()
+        context = {
+            'reservaciones' : reservaciones
+        }
+        html_template = loader.get_template('home/generalAdm-reser.html')
+        return HttpResponse(html_template.render(context, request)) 
+
+    if load_template == 'transacciones':
+        html_template = loader.get_template('home/generalAdm-reser.html')
+        return HttpResponse(html_template.render(context, request))  
+
+    if load_template == 'ingresos':
+        html_template = loader.get_template('home/generalAdm-reser.html')
+        return HttpResponse(html_template.render(context, request))  
+
+    if load_template == 'habitaciones':
+        html_template = loader.get_template('home/generalAdm-reser.html')
+        return HttpResponse(html_template.render(context, request))  
 
     html_template = loader.get_template('home/generalAdm.html')
     return HttpResponse(html_template.render(context, request))        
-
 
 @login_required(login_url="/login/")
 def pages(request):
