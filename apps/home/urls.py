@@ -20,10 +20,11 @@ urlpatterns = [
     path('gerente/', views.gerente, name='gerente'),
     path('gerente/reservaciones/', views.gerente, name='ger-res'),
     path('gerente/transacciones/', views.gerente, name='ger-trans'),
-    path('gerente/habitaciones/', views.gerente, name='ger-hab'),
-    path('gerente/ingresos/', views.gerente, name='ger-ing'),
+    path('gerente/habitaciones/', views.habitaciones, name='ger-hab'),
+    path('gerente/ingresos/', views.ingresos, name='ger-ing'),
 
     path('gerente/update/<int:option>/<int:id>', views.update, name='ger-update'),
+    path('gerente/delete/<int:option>/<int:id>', views.delete, name='ger-del'),
 
 
 

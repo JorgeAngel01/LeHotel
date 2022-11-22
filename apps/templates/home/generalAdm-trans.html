@@ -16,7 +16,7 @@
         <div class="col-12 col-xxl mb-4">
             <div class="card border-0 shadow">
                 <div class="card-header border-bottom d-flex align-items-center justify-content-between">
-                    <h2 class="fs-5 fw-bold mb-0">Reservaciones</h2>
+                    <h2 class="fs-5 fw-bold mb-0">Transacciones</h2>
                     
                 </div>
                 <div class="card card-body border-0 shadow table-wrapper table-responsive">
@@ -26,59 +26,56 @@
                             <tr>
                                 <th class="border-0 rounded-start"></th>
                                 <th class="border-gray-200">ID</th>
-                                <th class="border-gray-200">Fecha Reserva</th>
-                                <th class="border-gray-200">Fecha Entrega</th>
+                                <th class="border-gray-200">Fecha Transaccion</th>
                                 <th class="border-gray-200">Estado</th>
-                                <th class="border-gray-200">Costo</th>
-                                <th class="border-gray-200">Correo</th>
-                                <th class="border-0 rounded-end">Habitacion</th>
+                                <th class="border-gray-200">Total</th>
+                                <th class="border-gray-200">Medio de Pago</th>
+                                <th class="border-0 rounded-end">Detalles</th>
 
                             </tr>
                         </thead>
                         <tbody>
 
                             <!-- Item -->
-                            {% for res in reservaciones %}
+                            {% for trans in transacciones %}
                             <tr>
                                 <td>
                                     
-                                    <a class="btn btn-sm btn-primary" href="{% url 'ger-update' option=2 id=res.pk %}">
-                                        Edit
+                                    <a class="btn btn-sm btn-primary" href="{% url 'ger-update' option=3 id=trans.pk %}">
+                                        Editar
                                     </a>
-                                    <a class="btn btn-sm btn-danger" href="{% url 'ger-del' option=2 id=res.pk %}">
-                                        Delete
+                                    <a class="btn btn-sm btn-danger" href="{% url 'ger-del' option=3 id=trans.pk %}">
+                                        Borrar
                                     </a>
                                     
                                 </td>
-                                <td><span class="fw-normal">{{res.pk}}</span></td>
-                                <td><span class="fw-normal">{{res.fecha_reserva}}</span></td>
-                                <td><span class="fw-normal">{{res.fecha_entrega}}</span></td>
-
+                                <td><span class="fw-normal">{{trans.pk}}</span></td>
+                                <td><span class="fw-normal">{{trans.fecha_transaccion}}</span></td>
 
                                 <td>
-                                    {% if res.estado == 'AC' %}
+                                    {% if trans.estado == 'FI' %}
                                     <div class="d-flex align-items-center">
                                         <div class="bg-success dot rounded-circle me-1"></div>
-                                        <span class="fw-normal text-success">{{res.get_estado_display}}</span>
+                                        <span class="fw-normal text-success">{{trans.get_estado_display}}</span>
                                     </div>
-                                    {% elif res.estado == 'PR' %}
+                                    {% elif trans.estado == 'VA' %}
                                     <div class="d-flex align-items-center">
                                         <div class="bg-warning dot rounded-circle me-1"></div>
-                                        <span class="fw-normal text-success">{{res.get_estado_display}}</span>
+                                        <span class="fw-normal text-success">{{trans.get_estado_display}}</span>
                                     </div>
-                                    {% elif res.estado == 'RE' %}
+                                    {% elif trans.estado == 'CA' %}
                                     <div class="d-flex align-items-center">
                                         <div class="bg-danger dot rounded-circle me-1"></div>
-                                        <span class="fw-normal text-success">{{res.get_estado_display}}</span>
+                                        <span class="fw-normal text-success">{{trans.get_estado_display}}</span>
                                     </div>
                                     {% endif %}
 
                                 </td>
 
 
-                                <td><span class="fw-bold">${{res.costo_reservado}}</span></td>
-                                <td><span class="fw-bold">{{res.correo}}</span></td>
-                                <td><span class="fw-bold">{{res.habitaciones}}</span></td>
+                                <td><span class="fw-bold">${{trans.total}}</span></td>
+                                <td><span class="fw-bold">{{trans.get_medio_pago_display}}</span></td>
+                                <td><span class="fw-bold">{{trans.detalles}}</span></td>
                             </tr>
                             {% endfor %}
 

@@ -24,7 +24,7 @@ formato_dinero = dinero
 def llave(referencia):
     return models.ForeignKey(
         referencia, blank=False,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         null=True,
     )
 

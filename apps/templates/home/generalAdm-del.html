@@ -17,14 +17,14 @@
             
             <div class="card border-0 shadow">
                 <div class="card-header border-bottom d-flex align-items-center justify-content-between">
-                    <h2 class="fs-5 fw-bold mb-0">Actualizar</h2>
+                    <h2 class="fs-5 fw-bold mb-0">Borrar</h2>
                     
                 </div>
                 <div class="card-body col-xxl-8">
                     <form method="POST">
                         {% csrf_token %}
                         {{form.as_p}}
-                        <button class="btn btn-gray-800 mt-2 animate-up-2" type="submit">Guardar</button>
+                        <button class="btn btn-danger mt-2 animate-up-2" type="submit">Borrar</button>
                     </form>
 
                 </div>

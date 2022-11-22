@@ -132,7 +132,7 @@ class ReservacionM(ModelForm):
         widgets = {
             'fecha_reserva': forms.DateInput(attrs={'class': 'form-control'}),
             'fecha_entrega': forms.DateInput(attrs={'class': 'form-control'}),
-            'estado': forms.TextInput(attrs={'class': 'form-control'}),
+            'estado': forms.Select(attrs={'class': 'form-select'}),
             'costo_reservado': forms.NumberInput(attrs={'class': 'form-control'}),
             'correo': forms.EmailInput(attrs={'class': 'form-control'}),
             'habitaciones': forms.Select(attrs={'class': 'form-select'}),

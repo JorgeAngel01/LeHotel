@@ -14,6 +14,7 @@ from .forms import Reservacion, ReservacionM, Transaccion
 from datetime import datetime
 from django.conf import settings
 from django.core.mail import send_mail
+from django.shortcuts import get_object_or_404, render, HttpResponseRedirect
 
 
 # @login_required(login_url="/login/")
@@ -135,30 +136,6 @@ def mantenimiento(request):
     return HttpResponse(html_template.render(context, request))
 
 @login_required(login_url="/login/")
-def update(request, option, id):
-    
-    form = None
-
-    if option == 2:
-        a = Reservaciones.objects.get(pk=id)
-        form = ReservacionM( instance = a)
-        if form.is_valid():
-            form.save()
-            return redirect('ger-res')
-
-    if option == 3:
-        a = Transacciones.objects.get(pk=id)
-        form = Transaccion(instance = a)
-
-    context = {   
-        'form' : form
-    }
-
-
-    html_template = loader.get_template('home/generalAdm-upd.html')
-    return HttpResponse(html_template.render(context, request))   
-
-@login_required(login_url="/login/")
 def gerente(request):
     
     context = {   
@@ -175,7 +152,11 @@ def gerente(request):
         return HttpResponse(html_template.render(context, request)) 
 
     if load_template == 'transacciones':
-        html_template = loader.get_template('home/generalAdm-reser.html')
+        transacciones = Transacciones.objects.all()
+        context = {
+            'transacciones' : transacciones
+        }
+        html_template = loader.get_template('home/generalAdm-trans.html')
         return HttpResponse(html_template.render(context, request))  
 
     if load_template == 'ingresos':
@@ -187,7 +168,90 @@ def gerente(request):
         return HttpResponse(html_template.render(context, request))  
 
     html_template = loader.get_template('home/generalAdm.html')
-    return HttpResponse(html_template.render(context, request))        
+    return HttpResponse(html_template.render(context, request))     
+
+@login_required(login_url="/login/")
+def update(request, option, id):
+    
+    form = None
+    html_template = loader.get_template('home/generalAdm-upd.html')
+
+    if option == 2:
+        a = get_object_or_404(Reservaciones, id = id)
+        form = ReservacionM( request.POST or None, instance = a)
+        if request.method == 'POST':
+            if form.is_valid():
+                form.save()
+                return redirect('ger-res')
+
+    if option == 3:
+        a = Transacciones.objects.get(pk=id)
+        form = Transaccion(instance = a)
+
+    context = {   
+        'form' : form
+    }
+
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def delete(request, option, id):
+    
+    form = None
+    html_template = loader.get_template('home/generalAdm-del.html')
+
+    if option == 2:
+        a = get_object_or_404(Reservaciones, id = id)
+        form = ReservacionM(instance = a)
+
+        if request.method == 'POST':
+            a.delete()
+            return redirect('ger-res')
+
+    if option == 3:
+        a = Transacciones.objects.get(pk=id)
+        form = Transaccion(instance = a)
+
+    context = {   
+        'form' : form
+    }
+
+    return HttpResponse(html_template.render(context, request))     
+
+@login_required(login_url="/login/")
+def habitaciones(request):
+    
+    html_template = loader.get_template('home/generalAdm-ocupacion.html')
+
+    a = Reservaciones.objects.all().select_related("habitaciones")
+    print(a)
+    print(str(a.query))
+
+    queryset = Reservaciones.objects.order_by('pk')
+    data = serializers.serialize('json', list(queryset))
+
+    rooms = Habitaciones.objects.order_by('pk')
+
+    context = {
+        'data' : data,   
+        'rooms': rooms
+    }
+
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def ingresos(request):
+    
+    form = None
+    html_template = loader.get_template('home/generalAdm-ocupacion.html')
+
+    
+
+    context = {   
+        
+    }
+
+    return HttpResponse(html_template.render(context, request))       
 
 @login_required(login_url="/login/")
 def pages(request):
