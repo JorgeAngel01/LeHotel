@@ -11,7 +11,7 @@ from django.template import loader
 from django.urls import reverse
 from .models import Habitaciones, Reservaciones, Agregados, Transacciones, RelTransaccionAgregado , RelTransaccionReservacion
 from .forms import Reservacion, ReservacionM, Transaccion
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, render, HttpResponseRedirect
@@ -223,9 +223,10 @@ def habitaciones(request):
     
     html_template = loader.get_template('home/generalAdm-ocupacion.html')
 
-    a = Reservaciones.objects.all().select_related("habitaciones")
+    a = Reservaciones.objects.select_related("habitaciones")
     print(a)
     print(str(a.query))
+    print(a.values())
 
     queryset = Reservaciones.objects.order_by('pk')
     data = serializers.serialize('json', list(queryset))
@@ -242,13 +243,42 @@ def habitaciones(request):
 @login_required(login_url="/login/")
 def ingresos(request):
     
-    form = None
-    html_template = loader.get_template('home/generalAdm-ocupacion.html')
-
     
+    html_template = loader.get_template('home/generalAdm-ingresos.html')
 
-    context = {   
-        
+    """
+    a = Reservaciones.objects.select_related("habitaciones")
+    print(a)
+    print(str(a.query))
+    print(a.values())
+    
+    """
+    #Res data
+    today = datetime.now()
+    first = today.replace(day=1)
+    last_month = first
+    print(last_month.strftime("%Y-%m-%d"))
+
+    mes = Reservaciones.objects.filter(fecha_entrega__range=[first.strftime("%Y-%m-%d"), today.strftime("%Y-%m-%d")], estado='AC').order_by('fecha_entrega')
+    print(mes.values())
+    data_mes = serializers.serialize('json', list(mes))
+
+    start_week = today - timedelta(today.weekday())
+    end_week = start_week + timedelta(7)
+    sem = Reservaciones.objects.filter(fecha_entrega__range=[start_week.strftime("%Y-%m-%d"), end_week.strftime("%Y-%m-%d")], estado='AC').order_by('fecha_entrega')
+    print(sem.values())
+    data_sem = serializers.serialize('json', list(sem))
+
+    queryset = Reservaciones.objects.order_by('pk')
+    #print(queryset.values())
+    #data = serializers.serialize('json', list(queryset))
+
+    rooms = Habitaciones.objects.order_by('pk')
+
+    context = {
+        'data_mes' : data_mes,
+        'data_sem' : data_sem,   
+        'rooms': rooms
     }
 
     return HttpResponse(html_template.render(context, request))       
