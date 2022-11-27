@@ -30,6 +30,21 @@ def llave(referencia):
 
 formato_llave = llave
 
+# Tabla usuarios y grupos
+
+class Roles(models.Model):
+
+    nombre_rol = models.CharField(max_length=50)
+    descripcion_rol = models.EmailField()
+
+class UsuariosHotel(models.Model):
+
+    nombre_usuario = models.CharField(max_length=50)
+    correo_usuario = models.EmailField()
+    nombres = models.CharField(max_length=50)
+    apellidos = models.CharField(max_length=50)
+    rol = formato_llave(Roles)
+
 # Tabla Habitaciones
 
 class Habitaciones(models.Model):
