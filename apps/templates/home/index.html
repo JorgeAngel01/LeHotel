@@ -79,13 +79,11 @@
 </head>
 <body>
 
-    <header class="Header header-global ">
-        <nav id="navbar-main" aria-label="Primary navigation" class="Header-container navbar navbar-main navbar-expand-lg pt-4 ">
+    <header class="Header " id="myHeader">
+        <nav id="navbar-main" aria-label="Primary navigation" class="Header-container navbar navbar-expand-lg pt-14 ">
             <!-- LOGO -->
-                    <figure> <a href="/"><img src="{{ ASSETS_ROOT }}/img/logo/logo_white_large.png" alt="LeHote"></a></figure>
-                    <!-- ICONO MENU -->
-                    <span id="menu" class="icon icon-menu"></span>
-            <div class="Menu container position-relative">
+                    <figure> <a href="/" id="logo"><img src="{{ ASSETS_ROOT }}/img/logo/logo_white_large.png" alt="LeHote"></a></figure>
+                    
                 <div class="navbar-collapse collapse me-auto" id="navbar_global">
                     <div class="navbar-collapse-header">
                         <div class="row">
@@ -96,36 +94,43 @@
                             </div>
                         </div>
                     </div>
-                    <ul class="Menu-main navbar-nav navbar-nav-hover align-items-lg-center">
-                        <li class="nav-item me-2">
-                            <a href="#" class="nav-link">Inicio</a>
-                        </li>
-                        {% if user.is_superuser %}
-                        <li class="nav-item me-2">
-                            <a href="/admin/auth/user/" class="nav-link">Administrador</a>
-                        </li>
-                        {% elif user.groups.all.0.name == "administradores hotel" %}
-                        <li class="nav-item me-2">
-                            <a href="{% url 'gerente' %}" class="nav-link">Gerente</a>
-                        </li>
-                        {% elif user.groups.all.0.name == "camaristas" %}
-                        <li class="nav-item me-2">
-                            <a href="{% url 'camarista' %}" class="nav-link">Camarista</a>
-                        </li>
-                        {% elif user.groups.all.0.name == "mantenimiento" %}
-                        <li class="nav-item me-2">
-                            <a href="{% url 'mantenimiento' %}" class="nav-link">Mantenimiento</a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item me-2">
-                            <a href="/settings.html" class="nav-link">Configuración</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-
-                </div>
-                <div class="Menu-main ">
-
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <div class="nav-item">
+                        <ul class=" navbar-nav navbar-nav-hover text-white align-items-lg-center">
+                            <li class="nav-item me-2">
+                                <a href="#" class="active nav-link">Inicio</a>
+                            </li>
+                            <li class="nav-item me-2">
+                                <a href="#carrHabit" class="nav-link">Habitaciones</a>
+                            </li>
+                            <li class="nav-item me-2">
+                                <a href="#" class="nav-link">Nosotros</a>
+                            </li>
+                            {% if user.is_superuser %}
+                            <li class="nav-item me-2">
+                                <a href="/admin/auth/user/" class="nav-link">Administrador</a>
+                            </li>
+                            {% elif user.groups.all.0.name == "administradores hotel" %}
+                            <li class="nav-item me-2">
+                                <a href="{% url 'gerente' %}" class="nav-link">Gerente</a>
+                            </li>
+                            {% elif user.groups.all.0.name == "camaristas" %}
+                            <li class="nav-item me-2">
+                                <a href="{% url 'camarista' %}" class="nav-link">Camarista</a>
+                            </li>
+                            {% elif user.groups.all.0.name == "mantenimiento" %}
+                            <li class="nav-item me-2">
+                                <a href="{% url 'mantenimiento' %}" class="nav-link">Mantenimiento</a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item me-2">
+                                <a href="/settings.html" class="nav-link">Configuración</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <!----------------AUTENTICACIÓN ------------>
+                    <div class="nav-item-right">
                     {% if user.is_authenticated %}
                     <div class="media-body ms-2 text-white align-items-center d-none d-lg-block px-5">
                         <span class="mb-0 font-small fw-bold text-white">
@@ -141,82 +146,39 @@
                         <input type="email" class="form-control" placeholder="Buscar" name="buscar" aria-label="Buscar"
                             required>
                     </div>-->
-                    <a href="{% url 'login' %}" class="btn btn-outline-white d-inline-flex align-items-center me-md-3">
+                    
+                    <a href="{% url 'login' %}" class="btn btn-outline-white d-inline-flex align-items-lg-center me-md-3 ">
                         Ingresar
-                    </a>
-                    {% endif %}
-                </div>
-            </div>
+                    </a></div>
+                    {% endif %}</div>
+                    <span onclick="openNav()"><i id="icon" class="class fa-solid fa-bars"></i></span>
         </nav>
+        
     </header>
 
     <main>
 
         <!-- Hero  <!-- ESTE SE PUEDE USAR YA EN TODAS LAS PAGINAS-->
-        <div class="Home-banners">
-            <!--<div class="Home-banners-item">
-                <img src="{{ ASSETS_ROOT }}/img/banner/morelia.jpg" alt="Centro de Morelia">
-                <div class="Home-banners-item-text">
-                <h2>
-                    LeHOTEL by Marinela
-                    <span>CIUDAD DE CANTERA ROSA</span>
-                </h2>
+        <section class="contenedor ">
+            <div class="homeBanners ">
+                <div class="parallax" id="inicio"></div>
+                <div class="Home-banners-item ">
+                    <!--<img src="{{ ASSETS_ROOT }}/img/banner/moreliacalzadarec.jpg" alt="Centro de Morelia" class="bg-image background-image" style="height: 100%">-->
+                    <div class="Home-banners-item-text">
+                    <h2>
+                        LeHOTEL by Marinela
+                        <span>CIUDAD DE CANTERA ROSA</span>
+                    </h2>
+                    </div>
                 </div>
             </div>
-            <div class="Home-banners-item">
-                <img src="{{ ASSETS_ROOT }}/img/banner/moreliaav.jpg" alt="Centro de Morelia">
-                <div class="Home-banners-item-text">
-                <h2>
-                    LeHOTEL by Marinela
-                    <span>CIUDAD DE CANTERA ROSA</span>
-                </h2>
-                </div>
-            </div>
-            <div class="Home-banners-item">
-                <img src="{{ ASSETS_ROOT }}/img/banner/morelianoc.jpg" alt="Centro de Morelia">
-                <div class="Home-banners-item-text">
-                <h2>
-                    LeHOTEL by Marinela
-                    <span>CIUDAD DE CANTERA ROSA</span>
-                </h2>
-                </div>
-            </div>-->
-            <div class="Home-banners-item">
-                <img src="{{ ASSETS_ROOT }}/img/banner/moreliacalzadarec.jpg" alt="Centro de Morelia" class="objectfitcover">
-                <div class="Home-banners-item-text">
-                <h2>
-                    LeHOTEL by Marinela
-                    <span>CIUDAD DE CANTERA ROSA</span>
-                </h2>
-                </div>
-            </div>
-        </div>
-        <section class="section-header overflow-hidden pt-0 pt-lg-6 pb-9 pb-lg-0 bg-primary text-white">
-            <div class="container">
-                <div class="d-flex justify-content-center flex-column mb-0 mb-lg-0">
-                    <!--<a href="https://themesberg.com" target="_blank">
-                                        <img src="{{ ASSETS_ROOT }}/img/themesberg.svg" class="d-block mx-auto mb-3" height="25"
-                                            width="25" alt="Themesberg Logo">
-                                        <span class="text-muted font-small">
-                                            &copy; Themesberg
-                                        </span>
-                                        <a target="_blank" href="https://appseed.us">Coded by AppSeed</a>
-                                    </a>-->
-                </div>
-            </div>
-            </div>
-            </div>
-            <!-- ARCO BAJO
-                    <figure class="position-absolute bottom-0 left-0 w-100 d-none d-md-block mb-n2"><svg class="home-pattern"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 185.4">
-                            <path d="M3000,0v185.4H0V0c496.4,115.6,996.4,173.4,1500,173.4S2503.6,115.6,3000,0z"></path>
-                        </svg></figure>-->
         </section>
+        
 
         <!-- Carousel -->
 
-        <section class="section section-lg bg-soft pt-7">
-            <div class="container">
+        <section class="section section-lg bg-soft pt-7 " id="carrHabit" >
+            <div class="container" >
 
                 <!-- Carousel wrapper -->
 
@@ -251,7 +213,6 @@
 
                                         <div class="col-md-4 mb-3">
                                             <div class="card">
-
                                                 <img class="img-fluid" alt="100%x280"
                                                     src="{{room.foto_ref.url}}">
                                                 <div class="card-body">
@@ -265,7 +226,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
 
@@ -289,6 +249,12 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <!-- The dots/circles -->
+                <div style="text-align:center ">
+                <span class="dot" onclick="currentSlide({% if forloop.counter0  %}active{% endif %})"></span>
+                <span class="dot" onclick="currentSlide(forloop.counter0)"></span>
+                <span class="dot" onclick="currentSlide(forloop.counter0)"></span>
                 </div>
         </section>
 
@@ -336,11 +302,12 @@
     </main>
 
     <!-- ESTE SE PUEDE USAR YA EN TODAS LAS PAGINAS-->
-    <footer class="footer pt-4 bg-gray-800 text-white">
+    <footer class="footer pt-4 text-white">
         <div class="container">
             <div class="row">
                 <div class="col mb-md-0">
                     <span class="h5">LeHotel</span>
+                    <hr class="bg-gray-700 my-2">
                     <ul class="links-vertical mt-2">
                         <li><a target="_blank" href="https://themesberg.com/about">Sobre Nosotros</a></li>
                         <li><a target="_blank" href="https://themesberg.com/contact">Contacto</a></li>
@@ -348,20 +315,7 @@
                 </div>
 
             </div>
-            <hr class="bg-gray-700 my-5">
-            <div class="row">
-                <!--<div class="col mb-md-0">
-                            col-6 col-md-2 mb-5 mb-lg-0
-                            <a href="https://themesberg.com" target="_blank" class="d-flex justify-content-center">
-                                <img src="{{ ASSETS_ROOT }}/img/themesberg-logo-alt.svg" height="35" class="mb-4"
-                                    alt="Themesberg Logo">
-                            </a>
-                            <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
-                                <p class="fw-normal font-small mb-0">
-                                    &copy; LeHotel 2022-<span class="current-year">2020</span> - coded by <a target="_blank"
-                                        href="https://appseed.us">AppSeed</a>.</p>
-                            </div>-->
-            </div>
+            <hr class="bg-gray-700 my-1">
         </div>
         </div>
     </footer>

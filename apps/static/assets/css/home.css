@@ -1,10 +1,43 @@
 html {
+    scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
-    line-height: 1.15
+    line-height: 1.15;
+
 }
 
 body {
-    margin: 0
+    margin: 0;
+}
+
+body,
+html {
+    height: 100%;
+}
+
+.contenedor {
+    position: relative;
+    height: 720px;
+    overflow: hidden;
+}
+
+.parallax {
+    /* The image used */
+    top: auto;
+    background-image: url("../img/banner/moreliacalzada.jpg");
+    background-size: cover;
+
+    /* Set a specific height */
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    min-height: 500px;
+    z-index: -1;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 main {
@@ -16,160 +49,11 @@ h1 {
     margin: .67em 0
 }
 
-hr {
-    box-sizing: content-box;
-    height: 0;
-    overflow: visible
-}
-
-a {
-    background-color: transparent
-}
-
 
 img {
     border-style: none
 }
 
-/*
-button,
-input,
-optgroup,
-select,
-textarea {
-    font-family: inherit;
-    font-size: 100%;
-    line-height: 1.15;
-    margin: 0
-}
-
-button,
-input {
-    overflow: visible
-}
-
-button,
-select {
-    text-transform: none
-}
-
-[type=button],
-[type=reset],
-[type=submit],
-button {
-    -webkit-appearance: button
-}
-
-[type=button]::-moz-focus-inner,
-[type=reset]::-moz-focus-inner,
-[type=submit]::-moz-focus-inner,
-button::-moz-focus-inner {
-    border-style: none;
-    padding: 0
-}
-
-[type=button]:-moz-focusring,
-[type=reset]:-moz-focusring,
-[type=submit]:-moz-focusring,
-button:-moz-focusring {
-    outline: 1px dotted ButtonText
-}
-
-fieldset {
-    padding: .35em .75em .625em
-}
-
-legend {
-    box-sizing: border-box;
-    color: inherit;
-    display: table;
-    max-width: 100%;
-    padding: 0;
-    white-space: normal
-}
-
-progress {
-    vertical-align: baseline
-}
-
-textarea {
-    overflow: auto
-}
-
-[type=checkbox],
-[type=radio] {
-    box-sizing: border-box;
-    padding: 0
-}
-
-[type=number]::-webkit-inner-spin-button,
-[type=number]::-webkit-outer-spin-button {
-    height: auto
-}
-
-[type=search] {
-    -webkit-appearance: textfield;
-    outline-offset: -2px
-}
-
-[type=search]::-webkit-search-decoration {
-    -webkit-appearance: none
-}
-
-::-webkit-file-upload-button {
-    -webkit-appearance: button;
-    font: inherit
-}*/
-
-details {
-    display: block
-}
-
-summary {
-    display: list-item
-}
-
-[hidden],
-template {
-    display: none
-}
-
-/*
-.icon-facebook:before {
-    content: "\e900"
-}
-
-.icon-facebook2:before {
-    content: "\e901"
-}
-
-.icon-instagram:before {
-    content: "\e902"
-}
-
-.icon-youtube:before {
-    content: "\e903"
-}
-
-.icon-arrrow-bottom:before {
-    content: "\e905"
-}
-
-.icon-arrow-top:before {
-    content: "\e906"
-}
-
-.icon-arrow-left:before {
-    content: "\e907"
-}
-
-.icon-arrow-right:before {
-    content: "\e908"
-}*/
-
-.icon-menu:before {
-    content: "\e900"
-}
 
 * {
     box-sizing: border-box
@@ -180,45 +64,55 @@ body {
     /*font-family: Helvetica Neue, Helvetica, Arial, sans-serif*/
 }
 
-a {
-    color: inherit;
-    text-decoration: none
-}
-
-.slick-slider {
-    margin-bottom: 0
-}
-
-.layout {
-    margin: 0 auto;
-    max-width: 1340px;
-    padding: 0 20px;
-    width: 100%
-}
 
 .Header {
-    background-color: #16191C;
     color: #ffff;
-    padding: 20px 0
+    align-items: flex-start;
+    display: block;
+    position: absolute;
+    width: 100%;
+}
+
+#myHeader {
+
+    text-align: center;
+    /* Centered text */
+    font-weight: bold;
+    /*position: fixed;*/
+    /* Fixed position - sit on top of the page */
+    top: 0;
+    width: 100%;
+    /* Full width */
+    transition: 0.2s;
+    margin: auto;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .Header figure {
-    margin: 0;
-    padding: 0;
-    width: 200px
-}
-
-.Header-container {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    max-width: 1600px;
-    padding: 0 20px;
+    overflow: hidden;
+    width: 200px;
     position: relative;
-    width: 100%
+    margin-right: 14px;
+    top: 0;
 }
 
-#menu {
+.navbar {
+    background-color: #16191C;
+    overflow: hidden;
+    position: absolute; /*FIXED*/
+    top: 0;
+    width: 100%;
+    padding: 10px 16px;
+    margin: auto;
+    transition: top 0.3s;
+}
+
+#icon {
     color: #ffff;
     cursor: pointer;
     display: none;
@@ -229,245 +123,158 @@ a {
     z-index: 20
 }
 
-.Menu {
-    align-items: flex-start;
-    display: flex;
-    position: relative;
-    width: calc(100% - 380px)
-}
-
-.Menu ul {
-    display: flex;
-    list-style-type: none;
-    margin: 0
-}
-
-.Menu-main {
-    justify-content: space-between;
-    padding: 14px 60px 10px 0;
-    width: 100%
-}
-
-.Menu-icons {
+.Header-icons {
     align-items: center;
     padding: 10px 0
 }
 
-.Menu-icons li {
+.Header-icons li {
     font-weight: 700;
-    margin-left: 20px
+    margin-left: 40px
 }
 
-/*
-.Barra {
-    background-color: #454545;
-    left: -50px;
-    margin-top: 70px;
-    position: absolute;
-    width: calc(100% + 50px);
-    z-index: 2
-}
 
-.Barra form {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px
-}
-
-.Barra-col {
-    width: calc(20% - 30px)
-}
-
-.Barra-col select {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 14px;
-    padding: 5px
-}
-
-.Barra-col select:focus {
-    outline: none
-}
-
-.Barra-col option {
-    color: #1d1d1b
-}
-
-.Barra .col2,
-.Barra .col3,
-.Barra .col4 {
-    padding-left: 30px;
-    padding-right: 20px;
-    position: relative
-}
-
-.Barra .col2 img,
-.Barra .col3 img,
-.Barra .col4 img {
-    left: 0;
-    position: absolute
-}
-
-.Barra .col2 input,
-.Barra .col3 input,
-.Barra .col4 input {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    cursor: pointer;
+.nav-item a {
+    float: none;
     display: block;
-    font-size: 14px;
-    padding: 5px;
-    width: 100%
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
 }
 
-.Barra .col2 input:focus,
-.Barra .col3 input:focus,
-.Barra .col4 input:focus {
-    outline: none
+.nav-item a:hover {
+    border-bottom: 3px solid red;
 }
 
-.Barra .col2 input::-moz-placeholder,
-.Barra .col3 input::-moz-placeholder,
-.Barra .col4 input::-moz-placeholder {
-    color: #fff
+.nav-item a.active {
+    border-bottom: 3px solid red;
 }
 
-.Barra .col2 input:-ms-input-placeholder,
-.Barra .col3 input:-ms-input-placeholder,
-.Barra .col4 input:-ms-input-placeholder {
-    color: #fff
+.nav-item-right {
+    float: right;
+    margin-left: auto;
 }
 
-.Barra .col2 input::placeholder,
-.Barra .col3 input::placeholder,
-.Barra .col4 input::placeholder {
-    color: #fff
+.navbar .icon {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+
 }
 
-.Barra .col5 button {
-    background-color: #a58b4e;
-    border: none;
-    color: #fff;
-    font-size: 14px;
-    padding: 5px 20px
+.closebtn {
+
+    height: auto;
+    width: 0;
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgb(0, 0, 0);
+    /* Black fallback color */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Black w/opacity */
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
 }
 
-.Barra .col5 button:focus {
-    outline: none
-}
-
-.Barra .col6 a {
-    font-size: 14px
-}
-*/
-.Footer {
-    background-color: #1d1d1b;
-    color: #fff;
-    text-align: center
-}
-
-.Footer-top {
-    border-bottom: 1px solid hsla(0, 0%, 100%, .2);
-    padding: 40px 20px 20px
-}
-
-.Footer-top p {
-    color: #aaa6a6;
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
     display: inline-block;
-    margin: 0
+    transition: background-color 0.6s ease;
 }
 
-.Footer-top p img {
-    display: inline-block;
-    transform: translateX(-100px);
-    vertical-align: middle
+
+.dot:hover {
+    background-color: #717171;
 }
 
-.Footer-middle {
-    color: #aaa6a6;
-    padding: 20px 0
-}
 
-.Footer-middle-links {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px
-}
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the navbar (.icon) */
+@media screen and (max-width: 600px) {
+    .navbar a:not(:first-child) {
+        display: none;
+    }
 
-.Footer-middle-links a {
-    margin: 0 20px
-}
-
-.Footer-middle-links .icon {
-    display: inline-block;
-    font-size: 20px;
-    margin-right: 10px;
-    padding-bottom: 5px;
-    vertical-align: middle
-}
-
-.Footer-middle-back {
-    padding: 0 20px
-}
-
-.Footer-middle-back a {
-    background-color: #fff;
-    color: #1d1d1b;
-    display: inline-block;
-    font-size: 20px;
-    padding: 12px;
-    vertical-align: top
-}
-
-.Footer-bottom {
-    background-color: #454545;
-    padding: 30px 20px
-}
-
-@media screen and (max-width:1340px) {
-    .Barra {
-        left: -380px;
-        margin-top: 100px;
-        width: calc(100% + 380px)
+    .navbar a.icon {
+        float: right;
+        display: block;
     }
 }
+
+/* The "responsive" class is added to the navbar with JavaScript when the user clicks on the icon. This class makes the navbar look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+    .navbar.responsive a.icon {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    .navbar.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+}
+
+.footer {
+    background-color: #16191C;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+}
+
+
+@media only screen and (max-device-width: 1280px) {
+    .parallax {
+        background-attachment: scroll;
+    }
+}
+
 
 @media screen and (max-width:1200px) {
-    .Barra {
-        left: -320px;
-        width: calc(100% + 320px)
-    }
 
-    .Menu {
+    .Header {
         width: calc(100% - 320px)
     }
 
-    .Menu-main {
+    .navbar {
         padding: 14px 10px 10px 0
     }
 
-    .Menu-icons li {
+    .Header-icons li {
         margin-left: 10px
     }
 }
 
 @media screen and (max-width:980px) {
 
-    #menu,
-    .Menu {
+    #icon,
+    .navbar {
         display: block
     }
 
-    .Menu {
-        background-color: #1d1d1b;
+    .navbar {
         height: 100%;
         max-width: 320px;
-        padding: 86px 20px 20px;
-        position: fixed;
+        position: static;
         right: -320px;
         top: 0;
         transition: all .2s ease-in;
@@ -475,119 +282,55 @@ a {
         z-index: 10
     }
 
-    .Menu.show {
-        right: 0
+    .parallax {
+        display: block;
+        margin-top: auto;
+        width: 100%;
+        max-height: 500px;
+        position: relative;
+        top: 0;
+        z-index: 10
     }
 
-    .Menu-main {
+    .Home-banners-item-text {
+        display: block;
+        z-index: 40
+    }
+
+    .nav-item,
+    .nav-item-right {
         display: block !important
     }
 
-    .Menu-main li {
+    .nav-item,
+    .nav-item-right li {
         margin: 20px 0
     }
 
-    .Menu-main li a {
-        display: block
+    .navbar li a {
+        display: flex
     }
 
-    .Menu-icons {
+    .Header-icons {
         justify-content: center
     }
-
-    .Barra {
-        left: auto;
-        margin-left: 10px;
-        margin-top: 0;
-        position: relative;
-        width: calc(100% - 20px);
-        z-index: 12
-    }
-
-    .Barra form {
-        display: block
-    }
-
-    .Barra-col {
-        margin: 10px 0;
-        width: 100%
-    }
-
-    .Barra-col select {
-        width: 100%
-    }
-
-    .Barra .col5 button {
-        display: block;
-        width: 100%
-    }
-
-    .Barra .col6 {
-        text-align: center
-    }
-
-    .Barra .col2,
-    .Barra .col3,
-    .Barra .col4 {
-        padding-right: 0
-    }
-}
-
-@media screen and (max-width:920px) {
-    .Footer-top p img {
-        display: block;
-        margin: 20px auto;
-        transform: translateX(0)
-    }
-
-    .Footer-middle-links {
-        display: block
-    }
-
-    .Footer-middle-links a {
-        display: inline-block;
-        margin: 20px;
-        position: relative
-    }
-
-    .Footer-middle-links a:after {
-        content: "";
-        display: block
-    }
-}
-
-.slick-dots {
-    bottom: 0
-}
-
-.slick-dots li button {
-    background-color: #fff;
-    border-radius: 100%;
-    height: 8px;
-    width: 8px
-}
-
-.slick-dots li button:before {
-    display: none
-}
-
-.slick-dots li.slick-active button {
-    background-color: #a58b4e
-}
-
-.Home-banners-item {
-    position: relative
 }
 
 .Home-banners-item-text {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    left: 0;
     position: absolute;
-    top: 0;
-    width: 100%
+    /* Position the background text */
+    bottom: 40%;
+    /* At the bottom. Use top:0 to append it to the top */
+    background: rgb(0, 0, 0);
+    /* Fallback color */
+    background: rgba(0, 0, 0, 0.5);
+    /* Black background with 0.5 opacity */
+    color: #f1f1f1;
+    /* Grey text */
+    width: 100%;
+    /* Full width */
+    padding: 20px;
+    /* Some padding */
 }
 
 .Home-banners-item-text h2 {
@@ -603,279 +346,6 @@ a {
     font-size: 28px;
     font-weight: 300;
     margin-top: 5px
-}
-
-.Home-banners img {
-    display: block;
-    width: 100%
-}
-
-.Home-title {
-    padding: 60px 0;
-    text-align: center
-}
-
-.Home-title h1 {
-    font-size: 48px;
-    font-weight: 300;
-    margin: 0 0 20px
-}
-
-.Home-title h1 span {
-    font-weight: 700
-}
-
-.Home-title p {
-    line-height: 1.4em;
-    margin: 0 auto;
-    max-width: 1100px
-}
-
-.Home-card {
-    margin: 50px 0
-}
-
-.Home-card-container {
-    display: flex;
-    justify-content: space-between;
-    text-align: center
-}
-
-.Home-card-image {
-    min-height: 480px;
-    position: relative;
-    width: calc(50% - 20px)
-}
-
-.Home-card-image:before {
-    background-color: #a58b4e;
-    content: "";
-    height: 100%;
-    position: absolute;
-    right: -15px;
-    top: -15px;
-    width: 100%;
-    z-index: -1
-}
-
-.Home-card-image.right:before {
-    bottom: -15px;
-    left: -15px;
-    right: auto;
-    top: auto
-}
-
-.Home-card-image img {
-    display: none
-}
-
-.Home-card-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 40%
-}
-
-.Home-card-text h2 {
-    font-size: 48px;
-    font-weight: 300;
-    margin: 0
-}
-
-.Home-card-text h2 span {
-    font-weight: 700
-}
-
-.Home-card-text p {
-    line-height: 1.2em;
-    margin: 30px 0
-}
-
-.Home-card-text p span {
-    font-size: 14px
-}
-
-.Home-card-text a {
-    background-color: #1d1d1b;
-    color: #fff;
-    display: inline-block;
-    font-size: 18px;
-    padding: 12px 50px;
-    vertical-align: top
-}
-
-.Home-expectativas {
-    background: url(../images/home/img_2.jpg) no-repeat;
-    background-position: 50%;
-    background-size: cover;
-    color: #fff;
-    padding: 80px 0;
-    text-align: center
-}
-
-.Home-expectativas-title h2 {
-    font-size: 42px;
-    font-weight: 300;
-    margin: 0
-}
-
-.Home-expectativas-title h2 span {
-    font-weight: 700
-}
-
-.Home-expectativas-title p {
-    line-height: 1.4em;
-    margin: 40px auto;
-    max-width: 700px
-}
-
-.Home-expectativas-icons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start
-}
-
-.Home-expectativas-icons-item {
-    margin: 10px 15px;
-    width: calc(25% - 30px)
-}
-
-.Home-expectativas-icons-item img {
-    display: block;
-    margin: 0 auto
-}
-
-.Home-expectativas-cta {
-    padding-top: 40px
-}
-
-.Home-expectativas-cta a {
-    border: 1px solid #fff;
-    color: #fff;
-    display: inline-block;
-    font-size: 18px;
-    padding: 14px 40px
-}
-
-.Home-expectativas-cta p {
-    font-size: 14px
-}
-
-.Home-relax {
-    margin: 50px 0;
-    text-align: center
-}
-
-.Home-relax h2 {
-    font-size: 48px;
-    font-weight: 300;
-    margin: 0
-}
-
-.Home-relax h2 span {
-    font-weight: 700
-}
-
-.Home-relax p {
-    line-height: 1.2em;
-    margin: 30px 0
-}
-
-.Home-relax p span {
-    font-size: 14px
-}
-
-.Home-relax a {
-    display: inline-block;
-    font-size: 18px;
-    padding: 12px 50px;
-    vertical-align: top
-}
-
-.Home-footer,
-.Home-relax a {
-    background-color: #1d1d1b;
-    color: #fff
-}
-
-.Home-footer {
-    margin-bottom: 40px;
-    padding: 60px 0
-}
-
-.Home-footer-container {
-    align-items: center;
-    display: flex;
-    justify-content: center
-}
-
-.Home-footer-text h2 {
-    font-size: 44px;
-    margin: 0
-}
-
-.Home-footer-text h2 span {
-    font-weight: 300
-}
-
-.Home-footer-cta {
-    padding-left: 100px
-}
-
-.Home-footer-cta a {
-    background-color: #fff;
-    color: #1d1d1b;
-    display: inline-block;
-    padding: 14px 40px
-}
-
-@media screen and (max-width:920px) {
-    .Home-card-container {
-        display: block
-    }
-
-    .Home-card-image {
-        background: none;
-        min-height: auto;
-        width: 100%
-    }
-
-    .Home-card-image img {
-        display: block;
-        max-width: 100%
-    }
-
-    .Home-card-text {
-        display: block;
-        margin: 40px 0;
-        width: 100%
-    }
-
-    .Home-card-text h2 {
-        font-size: 28px;
-        font-weight: 300
-    }
-
-    .Home-footer-container {
-        display: block
-    }
-
-    .Home-footer-text {
-        text-align: center
-    }
-
-    .Home-footer-text h2 {
-        font-size: 24px
-    }
-
-    .Home-footer-cta {
-        padding-left: 0;
-        text-align: center
-    }
-
-    .Home-relax h2 {
-        font-size: 28px
-    }
 }
 
 @media screen and (max-width:880px) {
@@ -903,15 +373,5 @@ a {
 
     .Home-banners-item-text h2 span {
         font-size: 16px
-    }
-
-    .Home-title h1 {
-        font-size: 32px
-    }
-}
-
-@media screen and (max-width:580px) {
-    .Home-expectativas-icons-item {
-        width: calc(50% - 30px)
     }
 }
