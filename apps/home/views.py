@@ -9,7 +9,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.template import loader
 from django.urls import reverse
-from .models import Habitaciones, Reservaciones, Agregados, Transacciones, RelTransaccionAgregado , RelTransaccionReservacion
+from django.db.models import Q
+from .models import Habitaciones, Reservaciones, Agregados, Transacciones, RelTransaccionAgregado , RelTransaccionReservacion, Roles, UsuariosHotel
 from .forms import Reservacion, ReservacionM, Transaccion
 from datetime import datetime, timedelta
 from django.conf import settings
@@ -116,11 +117,18 @@ def reservacion(request, room_id):
 @login_required(login_url="/login/")
 def camarista(request):
     
-    context = {
-        
-    }
-    
+    rooms = Habitaciones.objects.filter(Q(estado="DI") | Q(estado="LI")).order_by('pk')
 
+    context = { 
+        'rooms': rooms
+    }
+
+    if request.method == 'POST':
+        print(request.POST)
+        for room in rooms:
+            if request.POST[str(room.pk)] != "Opciones":
+                Habitaciones.objects.filter(pk=room.pk).update(estado=request.POST[str(room.pk)])
+        return redirect('camarista')        
 
     html_template = loader.get_template('home/genCam.html')
     return HttpResponse(html_template.render(context, request))
@@ -128,18 +136,36 @@ def camarista(request):
 @login_required(login_url="/login/")
 def mantenimiento(request):
     
-    context = {
-        
+    rooms = Habitaciones.objects.filter(Q(estado="DI") | Q(estado="MA")).order_by('pk')
+
+    context = { 
+        'rooms': rooms
     }
+
+    if request.method == 'POST':
+        print(request.POST)
+        for room in rooms:
+            if request.POST[str(room.pk)] != "Opciones":
+                Habitaciones.objects.filter(pk=room.pk).update(estado=request.POST[str(room.pk)])
+        return redirect('mantenimiento')        
+                
+
 
     html_template = loader.get_template('home/genMant.html')
     return HttpResponse(html_template.render(context, request))
 
 @login_required(login_url="/login/")
 def gerente(request):
+
+    usuarios = UsuariosHotel.objects.all()
+    roles = Roles.objects.all()
     
-    context = {   
+    context = {     
+        'users' : usuarios,
+        'roles' : roles
     }
+    print(usuarios)
+    print(roles)
 
     load_template = request.path.split('/')[-2]
     

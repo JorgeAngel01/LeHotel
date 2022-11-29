@@ -149,4 +149,3 @@ class Transaccion(ModelForm):
             'medio_pago': forms.Select(attrs={'class': 'form-select'}),
             'detalles': forms.TextInput(attrs={'class': 'form-control'}), 
         }
-        

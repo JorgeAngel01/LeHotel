@@ -18,6 +18,9 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush list my--3">
+
+                        {% for user in users %}
+
                         <li class="list-group-item px-0">
                             <div class="row align-items-center">
                             <div class="col-auto">
@@ -69,81 +72,8 @@
                             </div>
                             </div>
                         </li>
-                        <li class="list-group-item px-0">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <!-- Avatar -->
-                                    <a href="#" class="avatar">
-                                        <img class="rounded" alt="Image placeholder" src="{{ ASSETS_ROOT }}/img/team/profile-picture-2.jpg">
-                                    </a>
-                                </div>
-                                <div class="col-auto ms--2">
-                                    <h4 class="h6 mb-0">
-                                        <a href="#">Jose Leos</a>
-                                    </h4>
-                                    <div class="d-flex align-items-center">
-                                        <div class="bg-warning dot rounded-circle me-1"></div>
-                                        <small>In a meeting</small>
-                                    </div>
-                                </div>
-                                <div class="col text-end">
-                                    <a href="#" class="btn btn-gray-800 d-inline-flex align-items-center me-2 dropdown-toggle">
-                                        <svg class="icon icon-xxs me-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 96c-17.7 0-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32z"/></svg>
-                                        Camarista
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item px-0">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <!-- Avatar -->
-                                    <a href="#" class="avatar">
-                                        <img class="rounded" alt="Image placeholder" src="{{ ASSETS_ROOT }}/img/team/profile-picture-3.jpg">
-                                    </a>
-                                </div>
-                                <div class="col-auto ms--2">
-                                    <h4 class="h6 mb-0">
-                                        <a href="#">Bonnie Green</a>
-                                    </h4>
-                                    <div class="d-flex align-items-center">
-                                        <div class="bg-danger dot rounded-circle me-1"></div>
-                                        <small>Offline</small>
-                                    </div>
-                                </div>
-                                <div class="col text-end">
-                                    <a href="#" class="btn btn-gray-800 d-inline-flex align-items-center me-2 dropdown-toggle">
-                                        <svg class="icon icon-xxs me-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 96c-17.7 0-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32z"/></svg>
-                                        Camarista
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item px-0">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <!-- Avatar -->
-                                    <a href="#" class="avatar">
-                                        <img class="rounded" alt="Image placeholder" src="{{ ASSETS_ROOT }}/img/team/profile-picture-4.jpg">
-                                    </a>
-                                </div>
-                                <div class="col-auto ms--2">
-                                    <h4 class="h6 mb-0">
-                                            <a href="#">Neil Sims</a>
-                                    </h4>
-                                    <div class="d-flex align-items-center">
-                                        <div class="bg-danger dot rounded-circle me-1"></div>
-                                        <small>Offline</small>
-                                    </div>
-                                </div>
-                                <div class="col text-end">
-                                    <a href="#" class="btn btn-gray-800 d-inline-flex align-items-center me-2 dropdown-toggle">
-                                        <svg class="icon icon-xxs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd"></path></svg>
-                                        Message
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
+
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
