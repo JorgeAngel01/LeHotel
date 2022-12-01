@@ -9,6 +9,7 @@ from tkinter import CASCADE
 from tokenize import blank_re
 from django.db import models
 from django.contrib.auth.models import User
+from django import forms
 
 # Formatos
 
@@ -24,11 +25,30 @@ formato_dinero = dinero
 def llave(referencia):
     return models.ForeignKey(
         referencia, blank=False,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         null=True,
     )
 
 formato_llave = llave
+
+# Tabla usuarios y grupos
+
+class Roles(models.Model):
+
+    nombre_rol = models.CharField(max_length=50)
+    descripcion_rol = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nombre_rol
+
+class UsuariosHotel(models.Model):
+
+    nombre_usuario = models.CharField(max_length=50)
+    correo_usuario = models.EmailField()
+    nombres = models.CharField(max_length=50)
+    apellidos = models.CharField(max_length=50)
+    password = models.CharField(max_length=50,default="password",)
+    rol = formato_llave(Roles)
 
 # Tabla Habitaciones
 
