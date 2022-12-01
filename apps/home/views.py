@@ -10,7 +10,9 @@ from django.shortcuts import redirect
 from django.template import loader
 from django.urls import reverse
 from django.db.models import Q
-from .models import Habitaciones, Reservaciones, Agregados, Transacciones, RelTransaccionAgregado , RelTransaccionReservacion, Roles, UsuariosHotel
+from .models import Habitaciones, Reservaciones, Agregados, Transacciones, RelTransaccionAgregado , RelTransaccionReservacion
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from .forms import Reservacion, ReservacionM, Transaccion
 from datetime import datetime, timedelta
 from django.conf import settings
@@ -157,15 +159,34 @@ def mantenimiento(request):
 @login_required(login_url="/login/")
 def gerente(request):
 
-    usuarios = UsuariosHotel.objects.all()
-    roles = Roles.objects.all()
+    User  = get_user_model()
+    users = User.objects.all()
+    
     
     context = {     
-        'users' : usuarios,
-        'roles' : roles
+        'users' : users,
+        
     }
-    print(usuarios)
-    print(roles)
+
+    if request.method == 'POST':
+        print(request.POST)
+        for user in users:
+            if str(user.pk) in request.POST:
+                print("Bruh")
+                if request.POST[str(user.pk)] == "mantenimiento":
+                    group = Group.objects.get(name="mantenimiento")
+                    group.user_set.add(user)
+                    group = Group.objects.get(name="camaristas")
+                    group.user_set.remove(user)
+                elif request.POST[str(user.pk)] == "camaristas":
+                    group = Group.objects.get(name="camaristas")
+                    group.user_set.add(user)
+                    group = Group.objects.get(name="mantenimiento")
+                    group.user_set.remove(user)
+
+        return redirect('gerente')        
+
+
 
     load_template = request.path.split('/')[-2]
     
