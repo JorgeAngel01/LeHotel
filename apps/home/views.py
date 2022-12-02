@@ -17,6 +17,7 @@ from .forms import Reservacion, ReservacionM, Transaccion
 from datetime import datetime, timedelta
 from django.conf import settings
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404, render, HttpResponseRedirect
 
 
@@ -100,6 +101,9 @@ def reservacion(request, room_id):
             Transacciones.objects.filter(pk = trans.pk).update(total = costo)
 
             # Envio de email a administrador
+
+            confirmation_template = render_to_string('home/confirmation.html')
+
             subject_admin = "Reservacion Realizada"
             message_admin = "Una reservacion de la habitacion" + room.nombre + " a sido realizada recientemente"
             email_from_admin = settings.EMAIL_HOST_USER
@@ -107,8 +111,9 @@ def reservacion(request, room_id):
             send_mail(subject_admin, message_admin, email_from_admin, recipient_list_admin)
 
             # Envio de email a usuario
+
             subject = "LeHotel - Reservacion Realizada"
-            message = "Su reservacion de la habitacion " + room.nombre + " a sido registrada y sera validada segun disponibilidad"
+            message = confirmation_template
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [request.POST['email']]
             send_mail(subject, message, email_from, recipient_list)
