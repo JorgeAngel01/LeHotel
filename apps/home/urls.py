@@ -26,7 +26,7 @@ urlpatterns = [
     path('gerente/update/<int:option>/<int:id>', views.update, name='ger-update'),
     path('gerente/delete/<int:option>/<int:id>', views.delete, name='ger-del'),
 
-
+    path('activate/<uidb64>/<token>', views.activate, name='activate'),
 
     # Matches any html file
     re_path(r'^.*\.*', views.pages, name='pages'),

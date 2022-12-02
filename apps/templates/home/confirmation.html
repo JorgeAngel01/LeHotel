@@ -1,2 +1,9 @@
-Su reservacion a sido registrada y sera validada segun disponibilidad una vez confirmada: https://themesberg.com/docs/volt-bootstrap-5-dashboard/foundation/typography/
-...Escriba su correo aqui
+
+<-- django_project/users/templates/template_activate_account.html -->
+{% autoescape off %}
+Hola {{ user.username }},
+
+Por favor haz click en el link para confirmar tu reservacion:
+
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+{% endautoescape %}

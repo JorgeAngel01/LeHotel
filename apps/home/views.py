@@ -17,8 +17,16 @@ from .forms import Reservacion, ReservacionM, Transaccion
 from datetime import datetime, timedelta
 from django.conf import settings
 from django.core.mail import send_mail
-from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404, render, HttpResponseRedirect
+
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.core.mail import EmailMessage
+from django.contrib import messages
+
+from .tokens import account_activation_token
 
 
 # @login_required(login_url="/login/")
@@ -102,8 +110,6 @@ def reservacion(request, room_id):
 
             # Envio de email a administrador
 
-            confirmation_template = render_to_string('home/confirmation.html')
-
             subject_admin = "Reservacion Realizada"
             message_admin = "Una reservacion de la habitacion" + room.nombre + " a sido realizada recientemente"
             email_from_admin = settings.EMAIL_HOST_USER
@@ -112,14 +118,46 @@ def reservacion(request, room_id):
 
             # Envio de email a usuario
 
-            subject = "LeHotel - Reservacion Realizada"
-            message = confirmation_template
+            subject = "LeHotel - Confirmacion de reservacion"
+            message = render_to_string('home/confirmation.html', {
+                'user': request.POST['nombres'],
+                'domain': get_current_site(request).domain,
+                'uid': urlsafe_base64_encode(force_bytes(reserva.pk)),
+                'token': account_activation_token.make_token(reserva),
+                'protocol': 'https' if request.is_secure() else 'http'
+            })
+
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [request.POST['email']]
+
             send_mail(subject, message, email_from, recipient_list)
+            
+            return redirect('home') 
             
 
         return HttpResponse(html_template.render(context, request))
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        reserva = Reservaciones.objects.get(pk=uid)
+        print("Conf")
+        print(uid)
+        print(reserva)
+    except(TypeError, ValueError, OverflowError):
+        reserva = None
+
+    if reserva is not None and account_activation_token.check_token(reserva, token):
+        reserva.estado = 'AC'
+        reserva.save()
+
+        messages.success(request, 'Thank you for your email confirmation. Now you can login your account.')
+        print("SUCCES?")
+        return redirect('home')
+    else:
+        messages.error(request, 'Activation link is invalid!')
+
+    return redirect('home')
 
 @login_required(login_url="/login/")
 def camarista(request):
