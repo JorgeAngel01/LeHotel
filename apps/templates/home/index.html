@@ -59,7 +59,11 @@
 
     <!-- ===== css ====== -->
     <link rel="stylesheet" href="geHab.scss">
-
+    <!-- PRUEBAS -->
+    <link rel="shortcut icon" href="/images/favicon.jpg" type="image/x-icon" />
+    <script src="{{ ASSETS_ROOT }}/js/index.js"></script>
+    <link rel="stylesheet" href="{{ ASSETS_ROOT }}/css/home.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
@@ -67,10 +71,11 @@
 
 <body>
 
-    <header class="header-global">
+    <header class="Header " id="myHeader">
         <nav id="navbar-main" aria-label="Primary navigation"
             class="navbar navbar-main navbar-expand-lg navbar-theme-primary pt-4 navbar-dark">
-            <div class="container position-relative">
+            <!-- LOGO -->
+            <figure> <a href="/" id="logo"><img src="{{ ASSETS_ROOT }}/img/logo/logo_white_large.png" alt="LeHote"></a></figure>
                 <div class="navbar-collapse collapse me-auto" id="navbar_global">
                     <div class="navbar-collapse-header">
                         <div class="row">
@@ -81,9 +86,18 @@
                             </div>
                         </div>
                     </div>
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <div class="nav-item">
                     <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
                         <li class="nav-item me-2">
                             <a href="#" class="nav-link">Inicio</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a href="#carrHabit" class="nav-link">Habitaciones</a>
+                        </li>
+                
+                        <li class="nav-item me-2">
+                            <a href="#About" class="nav-link">Nosotros</a>
                         </li>
                         {% if user.is_superuser %}
                         <li class="nav-item me-2">
@@ -107,6 +121,7 @@
                         </li>
                         {% endif %}
                     </ul>
+                    <!----------------AUTENTICACIÓN ------------>
                     <!--<ul class="navbar-nav navbar-nav-hover align-items-lg-center">
                         <li class="nav-item me-2">
                             <a href="/dashboard.html" class="nav-link">Dashboard</a>
@@ -134,7 +149,7 @@
                         {% endif %}
                     </ul>-->
                 </div>
-                <div class="d-flex align-items-center ms-auto">
+                <div class="nav-item-right ms-auto">
 
                     {% if user.is_authenticated %}
                     <div class="media-body ms-2 text-white align-items-center d-none d-lg-block px-5">
@@ -156,16 +171,42 @@
                     </a>
                     {% endif %}
                 </div>
-            </div>
+                <span onclick="openNav()"><i id="icon" class="class fa-solid fa-bars"></i></span>
         </nav>
     </header>
 
     <main>
+        <!-- IMAGEN  <!-- ESTE SE PUEDE USAR YA EN TODAS LAS PAGINAS-->
+        <section class="contenedor">
+            <div class="homeBanners ">
+                <div class="parallax" id="inicio"></div>
+                <div class="Home-banners-item ">
+                    <!--<img src="{{ ASSETS_ROOT }}/img/banner/moreliacalzadarec.jpg" alt="Centro de Morelia" class="bg-image background-image" style="height: 100%">-->
+                    <div class="Home-banners-item-text">
+                    <h2>
+                        LeHOTEL by Marinela
+                        <span>CIUDAD DE CANTERA ROSA</span>
+                    </h2>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-
+        <!-- ========== NOSOTROS ========== -->
+        <section class="" id="About">
+            <div class="">
+                <div class="bg-image">
+                </div>
+                <div class="bg-text">
+                    <h1>¿Quienes somos?</h1>
+                    <p>Somo unas palomillas, buscando pasar el semestre</p>
+                </div>
+            </div>
+        </section>
+        <!-- =========NOSOTROS ========== -->
         <!-- Carousel -->
 
-        <section class="section section-lg bg-soft pt-7">
+        <section class="section section-lg bg-soft " id="carrHabit">
             <div class="container">
 
                 <!-- Carousel wrapper -->
@@ -205,17 +246,12 @@
                                                         <!--<small class="text-muted">STATUS</small>-->
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
-
                                         {% endfor %}
-
                                     </div>
                                 </div>
-
                                 {% endfor %}
-
                             </div>
                             <div class="swiper-button-next" href="#carouselExampleIndicators2" data-slide="next">
                             </div>
@@ -224,8 +260,12 @@
                             </div>
                         </div>
                     </div>
-
-
+                </div>
+                <!-- The dots/circles -->
+                <div style="text-align:center ">
+                <span class="dot" onclick="currentSlide({% if forloop.counter0  %}active{% endif %})"></span>
+                <span class="dot" onclick="currentSlide(forloop.counter0)"></span>
+                <span class="dot" onclick="currentSlide(forloop.counter0)"></span>
                 </div>
         </section>
 
@@ -281,19 +321,26 @@
 
     <!-- ESTE SE PUEDE USAR YA EN TODAS LAS PAGINAS-->
     <footer class="footer py-6 bg-gray-800 text-white">
-        <div class="container">
+                <div class="container">
             <div class="row">
                 <div class="col mb-md-0">
                     <span class="h5">LeHotel</span>
+                    <hr class="bg-gray-700 my-2">
                     <ul class="links-vertical mt-2">
-                        <li><a target="_blank" href="https://themesberg.com/about">Sobre Nosotros</a></li>
-                        <li><a target="_blank" href="https://themesberg.com/contact">Contacto</a></li>
+                        <li><a target="_blank" href="#">Sobre Nosotros</a></li>
+                        <li><a target="_blank" href="#">Contacto</a></li>
                     </ul>
                 </div>
-
             </div>
-            <hr class="bg-gray-700 my-5">
-            <div class="row">
+            <hr class="bg-gray-700 my-1">
+        </div>
+        <div class="row my-1">
+                <div class="col mb-md-0 ">
+                        <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
+                            <p class="fw-normal font-small mb-4">
+                                &copy; LeHotel 2022-<span class="current-year"></span> - coded by <a target="_blank"
+                                    href="https://appseed.us">Marinela</a>.</p>
+                        </div>
             </div>
         </div>
     </footer>

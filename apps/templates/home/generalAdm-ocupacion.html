@@ -1,0 +1,97 @@
+{% extends "layouts/base-hotel.html" %}
+
+{% block title %} Gerente {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs5/dt-1.12.1/date-1.1.2/r-2.3.0/sb-1.3.4/sp-2.0.2/datatables.min.css" />
+{% endblock stylesheets %}
+
+{% block content %}
+
+    
+    <div class="py-4 row">
+        <div class="col-12 mb-4">
+            <div class="card bg-yellow-100 border-0 shadow">
+                <div class="card-header d-sm-flex flex-row align-items-center flex-0">
+                    <div class="d-block mb-3 mb-sm-0">
+                        <div class="fs-5 fw-normal mb-2">Habitaciones</div>
+                    </div>
+                </div>
+                <!--Chart-->
+                <div class="card-body p-2">
+                    {{ data|json_script:"data" }}
+                    <div id="chart"></div>
+                </div>
+            </div>
+        </div>
+        {% for room in rooms %}
+        <div class="col-12 col-sm-6 col-xl-4 mb-4">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <div class="row d-block d-xl-flex align-items-center">
+                        <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                            <img class="img-thumbnail  rounded me-4 me-sm-0" alt="100%x280" src="{{room.foto_ref.url}}">
+                            
+                        </div>
+                        <div class="col-12 col-xl-7 px-xl-0">
+                            <div class="d-none d-sm-block">
+                                <h2 class="h6 text-gray-400 mb-0">ID: {{room.pk}}</h2>
+                                <h3 class="fw-extrabold mb-2">{{room.nombre}}</h3>
+                            </div>
+                            {% if room.estado == 'DI' %}
+                            <small class="d-flex align-items-center text-success">
+                                <svg class="icon icon-xxs text-success ms-2 me-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M320.7 351.7C329 262.1 404.3 192 496 192c8.9 0 17.6 .7 26.1 1.9L309.5 7c-6-5-14-7-21-7s-15 1-22 8L10 231.5c-7 7-10 15-10 24c0 18 14 32.1 32 32.1h32V480c0 17.7 14.3 32 32 32H192c17.7 0 32-14.3 32-32V383.7c0-17.7 14.3-32 32-32h64l.7 0zM640 368c0-79.5-64.5-144-144-144s-144 64.5-144 144s64.5 144 144 144s144-64.5 144-144zm-76.7-43.3c6.2 6.2 6.2 16.4 0 22.6l-72 72c-6.2 6.2-16.4 6.2-22.6 0l-40-40c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L480 385.4l60.7-60.7c6.2-6.2 16.4-6.2 22.6 0z"/></svg> 
+                                {{room.get_estado_display}}                  
+                            </small> 
+                            {% elif room.estado == 'OC' %}
+                            <small class="d-flex align-items-center text-danger">
+                                <svg class="icon icon-xxs text-danger ms-2 me-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/></svg> 
+                                {{room.get_estado_display}}                  
+                            </small> 
+                            {% elif room.estado == 'MA' %}
+                            <small class="d-flex align-items-center text-info">
+                                <svg class="icon icon-xxs text-info ms-2 me-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M352 320c88.4 0 160-71.6 160-160c0-15.3-2.2-30.1-6.2-44.2c-3.1-10.8-16.4-13.2-24.3-5.3l-76.8 76.8c-3 3-7.1 4.7-11.3 4.7H336c-8.8 0-16-7.2-16-16V118.6c0-4.2 1.7-8.3 4.7-11.3l76.8-76.8c7.9-7.9 5.4-21.2-5.3-24.3C382.1 2.2 367.3 0 352 0C263.6 0 192 71.6 192 160c0 19.1 3.4 37.5 9.5 54.5L19.9 396.1C7.2 408.8 0 426.1 0 444.1C0 481.6 30.4 512 67.9 512c18 0 35.3-7.2 48-19.9L297.5 310.5c17 6.2 35.4 9.5 54.5 9.5zM80 456c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg>
+                                {{room.get_estado_display}}                  
+                            </small>
+                            {% elif room.estado == 'LI' %}
+                            <small class="d-flex align-items-center text-tertiary">
+                                <svg class="icon icon-xxs text-tertiary ms-2 me-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M627.6 57.3c14-10.9 16.5-31 5.6-44.9s-31-16.5-44.9-5.6l-144 112-72 56-8.7 6.8-30.8-39.4c-3.7-4.8-9.8-7-15.8-5.8s-10.7 5.7-12.3 11.5l-12.5 46.3L371.1 295l48-.9c6.1-.1 11.5-3.7 14.1-9.1s1.9-11.9-1.8-16.7L403 231.9l8.6-6.7 72-56 144-112zM16.7 507.7c37.4 2.8 196.8 12 252.3-31.4c57.7-45.1 76.8-161.5 76.8-161.5L267.1 213.9s-117.6-9.6-175.3 35.5C69 267.1 50.5 304.1 36.3 344c-2.4 6.7 4.7 12.8 11 9.4L86.2 333c4.1-2.2 9.2-1.1 12 2.6s2.7 8.8-.4 12.3L24.4 430.4C13.2 442.9 5.5 458.1 2.4 474.5c-.9 4.8-1.6 8.9-2.2 12.1c-.9 5 .5 10.1 3.6 14.1s7.7 6.6 12.8 7z"/></svg>
+                                {{room.get_estado_display}}                  
+                            </small> 
+                            {% elif room.estado == 'DE' %}
+                            <small class="d-flex align-items-center text-muted">
+                                <svg class="icon icon-xxs text-muted ms-2 me-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M367.2 412.5L99.5 144.8C77.1 176.1 64 214.5 64 256c0 106 86 192 192 192c41.5 0 79.9-13.1 111.2-35.5zm45.3-45.3C434.9 335.9 448 297.5 448 256c0-106-86-192-192-192c-41.5 0-79.9 13.1-111.2 35.5L412.5 367.2zM512 256c0 141.4-114.6 256-256 256S0 397.4 0 256S114.6 0 256 0S512 114.6 512 256z"/></svg>
+                                {{room.get_estado_display}}                  
+                            </small>  
+                            {% endif %}
+                            <div class="small d-flex mt-1">
+                                <svg class="icon icon-xs text-gray-500 ms-2 me-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M184 88c0 30.9-25.1 56-56 56s-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56zM64 245.7C54 256.9 48 271.8 48 288s6 31.1 16 42.3V245.7zm144.4-49.3C178.7 222.7 160 261.2 160 304c0 34.3 12 65.8 32 90.5V416c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V389.2C26.2 371.2 0 332.7 0 288c0-61.9 50.1-112 112-112h32c24 0 46.2 7.5 64.4 20.3zM448 416V394.5c20-24.7 32-56.2 32-90.5c0-42.8-18.7-81.3-48.4-107.7C449.8 183.5 472 176 496 176h32c61.9 0 112 50.1 112 112c0 44.7-26.2 83.2-64 101.2V416c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32zM568 88c0 30.9-25.1 56-56 56s-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56zm8 157.7v84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM320 160c-35.3 0-64-28.7-64-64s28.7-64 64-64s64 28.7 64 64s-28.7 64-64 64zM240 304c0 16.2 6 31 16 42.3V261.7c-10 11.3-16 26.1-16 42.3zm144-42.3v84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM448 304c0 44.7-26.2 83.2-64 101.2V448c0 17.7-14.3 32-32 32H288c-17.7 0-32-14.3-32-32V405.2c-37.8-18-64-56.5-64-101.2c0-61.9 50.1-112 112-112h32c61.9 0 112 50.1 112 112z"/></svg>                               
+                                <div>Adultos: <span class="text-gray-500 fw-bolder">{{room.cant_adultos}}</span></div>
+                            </div>
+                            <div class="small d-flex mt-1">
+                                <svg class="icon icon-xs text-gray-500 ms-2 me-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M160 128c-35.3 0-64-28.7-64-64s28.7-64 64-64s64 28.7 64 64s-28.7 64-64 64zM88 480V400H70.2c-10.9 0-18.6-10.7-15.2-21.1l31.1-93.4L57.5 323.3c-10.7 14.1-30.8 16.8-44.8 6.2s-16.8-30.7-6.2-44.8L65.4 207c22.4-29.6 57.5-47 94.6-47s72.2 17.4 94.6 47l58.9 77.7c10.7 14.1 7.9 34.2-6.2 44.8s-34.2 7.9-44.8-6.2l-28.6-37.8L265 378.9c3.5 10.4-4.3 21.1-15.2 21.1H232v80c0 17.7-14.3 32-32 32s-32-14.3-32-32V400H152v80c0 17.7-14.3 32-32 32s-32-14.3-32-32zM480 128c-35.3 0-64-28.7-64-64s28.7-64 64-64s64 28.7 64 64s-28.7 64-64 64zm-8 256v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V300.5L395.1 321c-9.4 15-29.2 19.4-44.1 10s-19.4-29.2-10-44.1l51.7-82.1c17.6-27.9 48.3-44.9 81.2-44.9h12.3c33 0 63.7 16.9 81.2 44.9L619.1 287c9.4 15 4.9 34.7-10 44.1s-34.7 4.9-44.1-10L552 300.5V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V384H472z"/></svg>                   
+                                <div>Niños: <span class="text-gray-500 fw-bolder">{{room.cant_adultos}}</span></div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %} 
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="{{ ASSETS_ROOT }}/js/graphs.js"></script>
+
+{% endblock javascripts %}

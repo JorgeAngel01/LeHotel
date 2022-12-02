@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- Primary Meta Tags -->
+    <title>
+        LeHotel - Página principal
+    </title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="title" content="Volt - Free Bootstrap 5 Admin Dashboard">
+        <meta name="author" content="Themesberg">
+        <meta name="description"
+       
+        content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
+        <meta name="keywords"
+       
+        content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, themesberg, themesberg dashboard, themesberg admin dashboard" />
+        <link rel="canonical" href="https://themesberg.com/product/admin-dashboard/volt-premium-bootstrap-5-dashboard">
+
+
+        <!-- Sweet Alert -->
+        <link type="text/css" href="{{ ASSETS_ROOT }}/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+
+        <!-- Notyf -->
+        <link type="text/css" href="{{ ASSETS_ROOT }}/vendor/notyf/notyf.min.css" rel="stylesheet">
+
+        <!-- Volt CSS -->
+        <link type="text/css" href="{{ ASSETS_ROOT }}/css/volt.css" rel="stylesheet">
+
+        <!-- Bootstrap -->
+        <link type="text/css" href="{{ ASSETS_ROOT }}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+        <script type='text/javascript'
+       
+        src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
+
+        <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
+
+        <!-- JQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+       
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+        <!-- Datatables -->
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs5/dt-1.12.1/date-1.1.2/r-2.3.0/sb-1.3.4/sp-2.0.2/datatables.min.css" />
+
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs5/dt-1.12.1/date-1.1.2/r-2.3.0/sb-1.3.4/sp-2.0.2/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs5/dt-1.12.1/date-1.1.2/r-2.3.0/sb-1.3.4/sp-2.0.2/datatables.min.css" />
+
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs5/dt-1.12.1/date-1.1.2/r-2.3.0/sb-1.3.4/sp-2.0.2/datatables.min.js"></script>
+
+        <script type="text/javascript" src="{{ ASSETS_ROOT }}/js/tableinit.js"></script>
+
+    <!-- ===== Link Swiper's CSS ====== -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+    <!-- ===== Fontawesome CDN LINK ====== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- ===== css ====== -->
+    <link rel="stylesheet" href="geHab.scss">
+
+
+    <!-- ===== Link Swiper's CSS ====== -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+    <!-- ===== Fontawesome CDN LINK ====== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- ===== css ====== -->
+    <link rel="stylesheet" href="geHab.scss">
+    <!-- PRUEBAS -->
+    <link rel="shortcut icon" href="/images/favicon.jpg" type="image/x-icon" />
+    <script src="{{ ASSETS_ROOT }}/js/index.js"></script>
+    <link rel="stylesheet" href="{{ ASSETS_ROOT }}/css/home.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+
+
+        <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+
+</head>
+<body>
+
+    <header class="Header " id="myHeader">
+        <nav id="navbar-main" aria-label="Primary navigation" class="Header-container navbar navbar-expand-lg pt-14 ">
+            <!-- LOGO -->
+                    <figure> <a href="/" id="logo"><img src="{{ ASSETS_ROOT }}/img/logo/logo_white_large.png" alt="LeHote"></a></figure>
+                    
+                <div class="navbar-collapse collapse me-auto" id="navbar_global">
+                    <div class="navbar-collapse-header">
+                        <div class="row">
+                            <div class="col-6 collapse-close">
+                                <a href="#navbar_global" class="fas fa-times" data-toggle="collapse"
+                                    data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false"
+                                    title="close" aria-label="Toggle navigation"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <div class="nav-item">
+                        <ul class=" navbar-nav navbar-nav-hover text-white align-items-lg-center">
+                            <li class="nav-item me-2">
+                                <a href="#" class="active nav-link">Inicio</a>
+                            </li>
+                            <li class="nav-item me-2">
+                                <a href="#carrHabit" class="nav-link">Habitaciones</a>
+                            </li>
+                            <li class="nav-item me-2">
+                                <a href="#" class="nav-link">Nosotros</a>
+                            </li>
+                            {% if user.is_superuser %}
+                            <li class="nav-item me-2">
+                                <a href="/admin/auth/user/" class="nav-link">Administrador</a>
+                            </li>
+                            {% elif user.groups.all.0.name == "administradores hotel" %}
+                            <li class="nav-item me-2">
+                                <a href="{% url 'gerente' %}" class="nav-link">Gerente</a>
+                            </li>
+                            {% elif user.groups.all.0.name == "camaristas" %}
+                            <li class="nav-item me-2">
+                                <a href="{% url 'camarista' %}" class="nav-link">Camarista</a>
+                            </li>
+                            {% elif user.groups.all.0.name == "mantenimiento" %}
+                            <li class="nav-item me-2">
+                                <a href="{% url 'mantenimiento' %}" class="nav-link">Mantenimiento</a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item me-2">
+                                <a href="/settings.html" class="nav-link">Configuración</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <!----------------AUTENTICACIÓN ------------>
+                    <div class="nav-item-right">
+                    {% if user.is_authenticated %}
+                    <div class="media-body ms-2 text-white align-items-center d-none d-lg-block px-5">
+                        <span class="mb-0 font-small fw-bold text-white">
+                            Current User: <strong>{{ request.user.username }}</strong>
+                        </span>
+                    </div>
+                    <br>
+                    <a href="{% url 'logout' %}" class="btn btn-outline-white d-inline-flex align-items-center me-md-3">
+                        Cerrar Sesion
+                    </a>
+                    {% else %}
+                    <!--<div class="nav-item col-18 me-2">
+                        <input type="email" class="form-control" placeholder="Buscar" name="buscar" aria-label="Buscar"
+                            required>
+                    </div>-->
+                    
+                    <a href="{% url 'login' %}" class="btn btn-outline-white d-inline-flex align-items-lg-center me-md-3 ">
+                        Ingresar
+                    </a></div>
+                    {% endif %}</div>
+                    <span onclick="openNav()"><i id="icon" class="class fa-solid fa-bars"></i></span>
+        </nav>
+        
+    </header>
+
+    <main>
+        <!-- IMAGEN  <!-- ESTE SE PUEDE USAR YA EN TODAS LAS PAGINAS-->
+        <section class="contenedor ">
+            <div class="homeBanners ">
+                <div class="parallax" id="inicio"></div>
+                <div class="Home-banners-item ">
+                    <!--<img src="{{ ASSETS_ROOT }}/img/banner/moreliacalzadarec.jpg" alt="Centro de Morelia" class="bg-image background-image" style="height: 100%">-->
+                    <div class="Home-banners-item-text">
+                    <h2>
+                        LeHOTEL by Marinela
+                        <span>CIUDAD DE CANTERA ROSA</span>
+                    </h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Carousel -->
+
+        <section class="section  pt-0 pt-lg-8 pb-9 pb-lg-0 ">
+            <div class="container">
+
+                <!-- Carousel wrapper -->
+
+                <div class="row">
+                    <div class="col-6">
+                        <h3 class="mb-3">Habitaciones</h3>
+                    </div>
+                    <div class="col-12">
+
+                        <div id="carouselExampleIndicators2" class="swiper mySwiper carousel slide"
+                            data-ride="carousel">
+
+                            <div class="swiper-wrapper carousel-inner" style="overflow:visible">
+
+                                {% for slide in rooms %}
+
+                                <div class="swiper-slide carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+                                    <div class="row">
+
+                                        {% for room in slide %}
+
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card">
+
+                                                <img class="img-fluid" alt="100%x280"
+                                                    src="{{room.foto_ref}}">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">{{room.nombre}}</h4>
+                                                    <p class="card-text">{{room.informacion}}.</p>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="btn-group">
+                                                            <a href="{% url 'reservacion' room.id %}"
+                                                                class="btn btn-sm btn-outline-secondary">Reservar</a>
+                                                            <!--<button type="button"class="btn btn-sm btn-outline-secondary">Editar</button>-->
+                                                        </div>
+                                                        <!--<small class="text-muted">STATUS</small>-->                                                        <!--<small class="text-muted">STATUS</small>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+
+                                {% endfor %}
+
+                            </div>
+                            <div class="swiper-button-next" href="#carouselExampleIndicators2" data-slide="next">
+                            </div>
+                            <div class="swiper-button-prev" href="#carouselExampleIndicators2" data-slide="prev"></div>
+                            <div class="swiper-pagination" href="#carouselExampleIndicators2" data-slide="prev">
+                            </div>
+                            <div class="swiper-button-next" href="#carouselExampleIndicators2" data-slide="next">
+                            </div>
+                            <div class="swiper-button-prev" href="#carouselExampleIndicators2" data-slide="prev"></div>
+                            <div class="swiper-pagination" href="#carouselExampleIndicators2" data-slide="prev">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- The dots/circles -->
+                <div style="text-align:center ">
+                <span class="dot" onclick="currentSlide({% if forloop.counter0  %}active{% endif %})"></span>
+                <span class="dot" onclick="currentSlide(forloop.counter0)"></span>
+                <span class="dot" onclick="currentSlide(forloop.counter0)"></span>
+                </div>
+        </section>
+
+        <!-- Room list -->
+
+        <section class="section section-lg bg-soft pt-10" >
+            <div class="container" name="ListaHabi">
+                <h3> Busqueda Avanzada </h3>
+                <!-- Table -->
+                <div class="card card-body border-0 shadow table-wrapper table-responsive">
+                    <table id="table_habitaciones" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="border-gray-200"></th>
+                                <th class="border-gray-200">Habitacion</th>
+                                <th class="border-gray-200">Descripcion</th>
+                                <th class="border-gray-200">Costo</th>
+                                <th class="border-gray-200">Huespedes</th>
+                                <th class="border-gray-200">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- Item -->
+                            {% for cuarto in cuartos %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'reservacion' cuarto.id %}" class="text-info me-3">Reservar</a>
+                                </td>
+                                <td>
+                                    <span class="fw-normal">{{cuarto.nombre}}</span>
+                                </td>
+                                <td><span class="fw-normal">{{cuarto.informacion}}</span></td>
+                                <td><span class="fw-normal">{{cuarto.costo}}</span></td>
+                                <td><span class="fw-bold">{{cuarto.cant_adultos}}</span></td>
+                                <td><span class="fw-bold text-warning">{{cuarto.get_estado_display}}</span></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- ESTE SE PUEDE USAR YA EN TODAS LAS PAGINAS-->
+    <footer class="footer pt-4 bg-gray-800 text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col mb-md-0">
+                    <span class="h5">LeHotel</span>
+                    <ul class="links-vertical mt-2">
+                        <!--<li><a target="_blank" href="https://themesberg.com/blog">Blog</a></li>
+                            <li><a target="_blank" href="https://themesberg.com/products">Productos</a></li>-->
+                        <li><a target="_blank" href="https://themesberg.com/about">Sobre Nosotros</a></li>
+                        <li><a target="_blank" href="https://themesberg.com/contact">Contacto</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+                <div class="col mb-md-0">
+                        <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
+                            <p class="fw-normal font-small mb-4">
+                                &copy; LeHotel 2022-<span class="current-year"></span> - coded by <a target="_blank"
+                                    href="https://appseed.us">Marinela</a>.</p>
+                        </div>
+            </div>
+    </footer>
+
+
+    {% include 'includes/scripts.html' %}
+    <script type="text/javascript" src="{{ ASSETS_ROOT }}/js/res.js"></script>
+    
+    {% if reservacion.errors %}
+
+    <script>
+        
+        Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        html: "Hubo un error con el formulario"
+        })
+
+    </script>
+
+    {% endif %}
+
+
+</body>
+
+</html>
+<!-- ========== LINEAS QUE PUEDEN SERVIR ==========
+    HEADER
+<div class="nav-item col-18 me-2">
+                        <input type="email" class="form-control" placeholder="Buscar" name="buscar" aria-label="Buscar"
+                            required>
+                    </div>
+    HERO
+    <section class="section-header overflow-hidden pt-0 pt-lg-6 pb-9 pb-lg-0 bg-primary text-white">
+            <div class="container">
+                <div class="d-flex justify-content-center flex-column mb-0 mb-lg-0">
+                    <a href="https://themesberg.com" target="_blank">
+                                <img src="{{ ASSETS_ROOT }}/img/themesberg.svg" class="d-block mx-auto mb-3" height="25"
+                                    width="25" alt="Themesberg Logo">
+                                <span class="text-muted font-small">
+                                    &copy; Themesberg
+                                </span>
+                                <a target="_blank" href="https://appseed.us">Coded by AppSeed</a>
+                            </a>
+                </div>
+            </div>
+            </div>
+            </div>
+            ARCO BAJO
+            <figure class="position-absolute bottom-0 left-0 w-100 d-none d-md-block mb-n2"><svg class="home-pattern"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 185.4">
+                    <path d="M3000,0v185.4H0V0c496.4,115.6,996.4,173.4,1500,173.4S2503.6,115.6,3000,0z"></path>
+                </svg></figure>
+        </section>
+
+
+        carrusel
+
+        <div class="col-6 text-xl-end ">
+                        <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
+                        <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+                            <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+        <div class="btn-group">
+            <button type="button"class="btn btn-sm btn-outline-secondary">Editar</button>
+            <button type="button"class="btn btn-sm btn-outline-secondary"href="habiReser.html">Reservar</button>
+        </div>
+        <small class="text-muted">STATUS</small>
+    </div>
+    ASI ESTA EN EL INDEX ORINGIN MASTER
+    <div class="d-flex justify-content-between align-items-center">
+    <div class="btn-group">
+    <a href="{% url 'reservacion' room.id %}" class="btn btn-sm btn-outline-secondary">Reservar</a>
+    <button type="button"class="btn btn-sm btn-outline-secondary">Editar</button>
+                                                </div>
+                                                <small class="text-muted">STATUS</small>
+                                                    </div>
+                                                <button class="btn btn-primary" type="button">Reservar</button>
+                                            </div>
+        footer
+
+                        <!--col-6 col-md-2 mb-5 mb-lg-0
+                        <a href="https://themesberg.com" target="_blank" class="d-flex justify-content-center">
+                            <img src="{{ ASSETS_ROOT }}/img/themesberg-logo-alt.svg" height="35" class="mb-4"
+                                alt="Themesberg Logo">
+                        </a>-->
+<!-- ========== LINEAS QUE PUEDEN SERVIR ========== -->

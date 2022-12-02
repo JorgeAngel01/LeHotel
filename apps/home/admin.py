@@ -4,10 +4,19 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from django.contrib import admin
-from .models import Agregados, Habitaciones, Reservaciones
+from .models import Roles, UsuariosHotel, Agregados, Habitaciones, Reservaciones
 from .models import Transacciones, RelTransaccionReservacion, RelTransaccionAgregado
 
 # Register your models here.
+
+@admin.register(Roles)
+class RolesAdmin(admin.ModelAdmin):
+    list_display = ('nombre_rol', 'descripcion_rol')
+
+@admin.register(UsuariosHotel)
+class UsuariosHotelAdmin(admin.ModelAdmin):
+    list_display = ('nombre_usuario', 'correo_usuario', 'nombres', 'apellidos', 'password', 'rol')
+    list_filter = ('rol',)
 
 @admin.register(Habitaciones)
 class HabitacionesAdmin(admin.ModelAdmin):

@@ -5,9 +5,10 @@ Copyright (c) 2019 - present AppSeed.us
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from datetime import datetime, timedelta
-from .models import Reservaciones
+from .models import Reservaciones, Transacciones
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV2Checkbox
+from django.forms import ModelForm
 
 class Reservacion(forms.Form):
     query = None
@@ -73,7 +74,7 @@ class Reservacion(forms.Form):
     
     # Hidden fields
     cost = forms.FloatField(
-    widget=forms.TextInput(
+    widget=forms.NumberInput(
         attrs={
             "class": "form-control",
             "hidden": True
@@ -123,4 +124,28 @@ class Reservacion(forms.Form):
             raise forms.ValidationError("La reservacion no puede ser en fechas pasadas.")
 
         return super(Reservacion, self).clean()
-    
+
+class ReservacionM(ModelForm):
+    class Meta:
+        model = Reservaciones
+        fields = ['fecha_reserva', 'fecha_entrega', 'estado', 'costo_reservado', 'correo', 'habitaciones']
+        widgets = {
+            'fecha_reserva': forms.DateInput(attrs={'class': 'form-control'}),
+            'fecha_entrega': forms.DateInput(attrs={'class': 'form-control'}),
+            'estado': forms.Select(attrs={'class': 'form-select'}),
+            'costo_reservado': forms.NumberInput(attrs={'class': 'form-control'}),
+            'correo': forms.EmailInput(attrs={'class': 'form-control'}),
+            'habitaciones': forms.Select(attrs={'class': 'form-select'}),
+        }
+
+class Transaccion(ModelForm):
+    class Meta:
+        model = Transacciones
+        fields = ['fecha_transaccion', 'estado', 'total', 'medio_pago', 'detalles']
+        widgets = {
+            'fecha_transaccion': forms.DateInput(attrs={'class': 'form-control'}),
+            'estado': forms.Select(attrs={'class': 'form-select'}),
+            'total': forms.NumberInput(attrs={'class': 'form-control'}),
+            'medio_pago': forms.Select(attrs={'class': 'form-select'}),
+            'detalles': forms.TextInput(attrs={'class': 'form-control'}), 
+        }
