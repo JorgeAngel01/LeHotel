@@ -73,7 +73,7 @@
 
     <header class="Header " id="myHeader">
         <nav id="navbar-main" aria-label="Primary navigation"
-            class="navbar navbar-main navbar-expand-lg navbar-theme-primary pt-4 navbar-dark">
+            class="navbar flexbox navbar-main navbar-expand-lg navbar-theme-primary pt-4 navbar-dark">
             <!-- LOGO -->
             <figure> <a href="/" id="logo"><img src="{{ ASSETS_ROOT }}/img/logo/logo_white_large.png" alt="LeHote"></a></figure>
                 <div class="navbar-collapse collapse me-auto" id="navbar_global">
@@ -93,11 +93,13 @@
                             <a href="#" class="nav-link">Inicio</a>
                         </li>
                         <li class="nav-item me-2">
+                            <a href="#About" class="nav-link">Nosotros</a>
+                        </li>
+                        <li class="nav-item me-2">
                             <a href="#carrHabit" class="nav-link">Habitaciones</a>
                         </li>
-                
                         <li class="nav-item me-2">
-                            <a href="#About" class="nav-link">Nosotros</a>
+                            <a href="#buscar" class="nav-link">Buscar</a>
                         </li>
                         {% if user.is_superuser %}
                         <li class="nav-item me-2">
@@ -193,20 +195,24 @@
         </section>
 
         <!-- ========== NOSOTROS ========== -->
-        <section class="" id="About">
-            <div class="">
-                <div class="bg-image">
-                </div>
+        <section class="section section-lg bg-soft py-0" id="About">
+            
+                <div class="bg-image"></div>
                 <div class="bg-text">
                     <h1>¿Quienes somos?</h1>
                     <p>Somo unas palomillas, buscando pasar el semestre</p>
                 </div>
-            </div>
+                <div class="bg-text-desc">
+                    <!--<p>{% lorem 2 p random %}</p>-->
+                    <p>Quae nesciunt numquam officiis, illum molestiae voluptate aliquam est explicabo, corporis voluptas rerum, debitis assumenda saepe fugiat voluptatibus quos odit magni perferendis in? Adipisci dolores distinctio beatae commodi libero numquam explicabo quis minima porro iusto, perspiciatis reprehenderit consequatur corporis quod dolor nostrum a necessitatibus mollitia assumenda libero, quis similique perferendis reiciendis eum quibusdam assumenda ex impedit ipsa, ipsa saepe dicta quasi veritatis dolore temporibus atque placeat maxime quae, laboriosam eveniet perferendis beatae amet impedit?</p>
+                </div>
+
+            
         </section>
         <!-- =========NOSOTROS ========== -->
         <!-- Carousel -->
 
-        <section class="section section-lg bg-soft " id="carrHabit">
+        <section class="section section-lg bg-soft py-4" id="carrHabit">
             <div class="container">
 
                 <!-- Carousel wrapper -->
@@ -271,7 +277,7 @@
 
         <!-- Room list -->
 
-        <section class="section section-lg bg-soft pt-0">
+        <section class="section section-lg bg-soft py-4 mb-md-0" id="buscar">
             <div class="container">
                 <h3> Busqueda Avanzada </h3>
                 <!-- Table -->
@@ -320,7 +326,7 @@
     </main>
 
     <!-- ESTE SE PUEDE USAR YA EN TODAS LAS PAGINAS-->
-    <footer class="footer py-6 bg-gray-800 text-white">
+    <footer class="footer py-3 bg-gray-800 text-white mb-md-0 ">
                 <div class="container">
             <div class="row">
                 <div class="col mb-md-0">

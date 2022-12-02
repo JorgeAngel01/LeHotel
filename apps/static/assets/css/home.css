@@ -153,7 +153,7 @@ body {
 }
 
 .nav-item-right {
-    float: right;
+    display: inline-block;
     margin-left: auto;
 }
 
@@ -349,32 +349,43 @@ body {
     margin-top: 5px
 }
 
+/*
 #About {
     background-color: bisque;
     width: 100%;
+}*/
+
+
+.section #About {
+    position: absolute;
+    /*max-height: 900px;*/
+    align-items: center;
+    margin: 0px:
 }
 
-#About .row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
 
 .bg-image {
+    top: 0;
     background-image: url("../img/banner/moreliaav.jpg");
     filter: blur(8px);
     -webkit-filter: blur(8px);
-    height: 60vh;
+    width: 100%;
+    height: 90vh;
     background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
+}
+
+
+.bg-text h1 {
+    font-size: 2em;
+    margin: .67em 0;
+    color: white;
+    font-weight: bold;
 }
 
 .bg-text {
     background-color: rgb(0, 0, 0);
-    /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/opacity/see-through */
     color: white;
     font-weight: bold;
     border: 3px solid #f1f1f1;
@@ -382,15 +393,39 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 2;
     width: 80%;
     padding: 20px;
     text-align: center;
 }
 
-@media screen and (max-width: 600px) {
+.bg-text-desc {
+    background-color: rgb(105, 105, 105);
+    /* Fallback color */
+    background-color: rgba(105, 104, 104, 0.4);
+    /* Black w/opacity/see-through */
+    color: whitesmoke;
+    font-weight: bold;
+    margin-top: auto;
+    position: absolute;
+    width: 90%;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+
+}
+
+
+@media screen and (max-width: 700px) {
     #About .img {
         width: 100%;
+    }
+
+    .bg-text {
+        top: 35%;
+    }
+
+    .bg-text-desc {
+        transform: translate(-50%, -50%);
     }
 }
 
