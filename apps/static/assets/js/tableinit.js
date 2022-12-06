@@ -1,6 +1,6 @@
 $(document).ready( function () {
     $('#table_habitaciones').DataTable({
-        order: [[3, 'desc']],
+        order: [[1, 'desc']],
         "lengthChange": false ,
         "pagingType": "full_numbers",
         language: {
@@ -8,7 +8,7 @@ $(document).ready( function () {
         }
     });
     $('#table_reservaciones').DataTable({
-        order: [[3, 'desc']],
+        order: [[1, 'desc']],
         "lengthChange": false ,
         "pagingType": "full_numbers",
         language: {

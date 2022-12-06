@@ -32,7 +32,7 @@ from .tokens import account_activation_token
 # @login_required(login_url="/login/")
 def index(request):
     
-    cuartos = Habitaciones.objects.filter(estado='DI')
+    cuartos = Habitaciones.objects.filter(Q(estado="DI") | Q(estado="LI"))
     
     rooms = []
     a = []
@@ -234,7 +234,7 @@ def gerente(request):
     load_template = request.path.split('/')[-2]
     
     if load_template == 'reservaciones':
-        reservaciones = Reservaciones.objects.all()
+        reservaciones = Reservaciones.objects.all().order_by('pk')
         context = {
             'reservaciones' : reservaciones
         }
@@ -242,7 +242,7 @@ def gerente(request):
         return HttpResponse(html_template.render(context, request)) 
 
     if load_template == 'transacciones':
-        transacciones = Transacciones.objects.all()
+        transacciones = Transacciones.objects.all().order_by('pk')
         context = {
             'transacciones' : transacciones
         }
@@ -275,8 +275,12 @@ def update(request, option, id):
                 return redirect('ger-res')
 
     if option == 3:
-        a = Transacciones.objects.get(pk=id)
-        form = Transaccion(instance = a)
+        a =  get_object_or_404(Transacciones, id = id)
+        form = Transaccion(request.POST or None, instance = a)
+        if request.method == 'POST':
+            if form.is_valid():
+                form.save()
+                return redirect('ger-trans')
 
     context = {   
         'form' : form
